@@ -1,5 +1,5 @@
 #运行方式
-#sudo sh 1-QT.sh
+#sh 1-QT.sh
 
 #===========QT5.7.1安装==========
 #下载QT包http://download.qt.io/archive/qt/5.7/5.7.1/

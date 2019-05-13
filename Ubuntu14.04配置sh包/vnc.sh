@@ -1,5 +1,5 @@
 #运行方式
-#sudo sh vnc.sh
+#sh vnc.sh
 #在Ubuntu14.04里这个远程桌面并没有X11VNC好用，可安装另一个sh
 
 #===========vncserver安装============
@@ -30,8 +30,6 @@ nautilus &
 gnome-terminal & " > ~/.vnc/xstartup
 #为xstartup文件添加可执行权限
 chmod +x ~/.vnc/xstartup
-sudo chmod -R 777 .dbus
-sudo chmod -R 777 .gvfs
 
 #===========vncviewer安装============
 sudo apt-get install xvnc4viewer
