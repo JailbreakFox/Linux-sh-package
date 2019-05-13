@@ -10,7 +10,8 @@ sudo apt-get install x11vnc -y
 sudo x11vnc -storepasswd /etc/x11vnc.pass
 #创建服务
 sudo touch /lib/systemd/system/x11vnc.service
-sudo chmod -R 777 /lib/systemd/system/x11vnc.service
+#不要随便用chmod -R，这个参数代表修改目录下所有文件的权限！！
+sudo chmod 777 /lib/systemd/system/x11vnc.service
 echo "[Unit]
 Description=Start x11vnc at startup.
 After=multi-user.target
