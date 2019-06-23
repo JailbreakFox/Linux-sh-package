@@ -2,7 +2,7 @@
 #sh CMake.sh
 
 #===========CMake安装==========
-#下载CLion包https://cmake.org/download/
+#下载Cmake包https://cmake.org/download/
 #解压tar.gz包，解压位置推荐设置为用户目录下的opt文件~/opt
 tar -zxvf cmake-3.14.3.tar.gz -C ~/opt
 #安装gcc和g++，可以选择分别安装sudo apt-get install gcc g++，或者直接
