@@ -1,4 +1,4 @@
-# Ubuntu14.04-LTS-sh
+# Ubuntu16.04-LTS-sh
 sh files help to install software in default Ubuntu14.04 LTS
 注意，注意！不能用sudo启动sh脚本，不然会所有命令使用root运行，导致有些文件夹的权限过高
 
