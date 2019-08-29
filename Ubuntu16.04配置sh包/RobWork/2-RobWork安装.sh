@@ -21,17 +21,17 @@
 #在运行make命令之前仔细查看CMake的输出，检查是否有错误以及是否正确找到了所需的依赖项。要生成的-j4参数将在4个CPU核心上构建RobWork。注意在编译时，每个线程至少需要1 GB的内存，例如用4个内核编译需要大约4GB的RAM。
 #build方式可以根据需要选择
 #cd ~/RobWork/Build/RW
-#cmake -DCMAKE_BUILD_TYPE=Release ../../RobWork
+#cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo ../../RobWork
 #make -j4
 
 #编译RWS模块
 #cd ~/RobWork/Build/RWStudio
-#cmake -DCMAKE_BUILD_TYPE=Release ../../RobWorkStudio
+#cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo ../../RobWorkStudio
 #make -j4
 
 #编译RWSim模块
 #cd ~/RobWork/Build/RWSim
-#cmake -DCMAKE_BUILD_TYPE=Release ../../RobWorkSim
+#cmake -DCMAKE_BUILD_TYPE=Debug ../../RobWorkSim
 #make -j4
 
 #编译RobWH模块
