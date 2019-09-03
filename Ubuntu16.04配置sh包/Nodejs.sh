@@ -26,6 +26,3 @@ sudo npm install n -g
 
 #更新版本，可以看到有 installed：版号，说明更新成功
 sudo n stable
-
-#安装hexo
-sudo npm install -g hexo
