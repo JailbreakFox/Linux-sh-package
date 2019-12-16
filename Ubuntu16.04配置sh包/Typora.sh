@@ -3,7 +3,7 @@
 
 #===========Typora安装============
 #添加key
-sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys BA300B7755AFCF
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys BA300B7755AFCFAE
 
 #添加repository
 sudo add-apt-repository 'deb http://typora.io linux/'
