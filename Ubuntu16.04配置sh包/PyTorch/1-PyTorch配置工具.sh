@@ -5,3 +5,8 @@
 sudo apt-get install python3-pip
 #更新pip3版本
 sudo pip3 install --upgrade pip
+
+#安装IPython
+sudo pip3 install ipython
+#安装IPdb
+sudo pip3 install ipdb
