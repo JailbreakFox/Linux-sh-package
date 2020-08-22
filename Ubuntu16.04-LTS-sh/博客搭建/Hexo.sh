@@ -8,6 +8,7 @@ sudo apt install nodejs npm
 
 # 用npm安装hexo
 sudo npm install hexo-cli -g
+npm install hexo-deployer-git --save # 用于向git仓库提交代码
 
 # 初始化hexo框架
 # hexo init
