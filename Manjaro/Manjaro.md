@@ -8,9 +8,13 @@ sudo  pacman-mirrors -i -c China -m rank  # 勾选科大源(USTC那个)
 sudo pacman -Syy && sudo pacman -Syu
 ```
 
-# 安装vim、git、gcc、gedit
+# 安装必要库
 ```sh
-sudo pacman -S vim git gcc gedit
+# 编辑器
+sudo pacman -S vim gedit
+
+# 开发环境
+sudo pacman -S gdb git gcc cmake qtcreator
 ```
 
 # 添加Arch Linux cn源
