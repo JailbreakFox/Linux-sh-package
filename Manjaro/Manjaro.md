@@ -95,5 +95,10 @@ bash <(curl -s -L https://git.io/v2ray-setup.sh)
 # 记录v2ray的vmess地址
 v2ray url
 
-# 安装客户端 https://github.com/jiangxufeng/v2rayL/releases
+# 安装客户端 https://github.com/Qv2ray/Qv2ray/releases
+chmod a+x Qv2ray.v2.6.3.linux-x64.AppImage
+./Qv2ray.v2.6.3.linux-x64.AppImage
+# 下载v2ray-core https://github.com/v2ray/v2ray-core/releases 下载v2ray-linux-64.zip
+# 首选项 - 内核设置，"v2ray核心可执行文件路径"设置为core文件夹下的v2ray文件，"v2ray资源目录"设置为core文件夹路径
+# 添加服务器中的Vmess地址，并右键点击"连接到此服务器"
 ```
