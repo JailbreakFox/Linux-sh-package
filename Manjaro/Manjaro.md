@@ -84,3 +84,16 @@ chsh -s $(which zsh)
 ```sh
 sudo pacman -S visual-studio-code-bin
 ```
+
+# 科学上网
+```sh
+# 购买vultr服务器
+https://my.vultr.com
+
+# ssh连接服务器，然后一键搭建v2ray
+bash <(curl -s -L https://git.io/v2ray-setup.sh)
+# 记录v2ray的vmess地址
+v2ray url
+
+# 安装客户端 https://github.com/jiangxufeng/v2rayL/releases
+```

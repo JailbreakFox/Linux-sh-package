@@ -36,10 +36,26 @@ scons platform=osx arch=arm64 --jobs=$(sysctl -n hw.logicalcpu)
 
 # 翻墙
 ```sh
+# ===== 方案一 =====
+# 购买cloudss，获取链接地址
+
 # 下载clashx
 # https://github.com/yichengchen/clashX/releases
 
 # 在~/.config/clashx/目录先添加.yaml配置文件
+# 添加获得的链接地址
+
+# ===== 方案二 =====
+# 购买vultr服务器
+https://my.vultr.com
+
+# ssh连接服务器，然后一键搭建v2ray
+bash <(curl -s -L https://git.io/v2ray-setup.sh)
+# 记录v2ray的vmess地址
+v2ray url
+
+# 安装客户端 https://github.com/Cenmrev/V2RayX/releases
+# 客户端搭建方法 https://www.imtrq.com/archives/1600
 ```
 
 # 内置应用
