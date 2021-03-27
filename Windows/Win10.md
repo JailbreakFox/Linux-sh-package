@@ -26,6 +26,10 @@ ZF3R0-FHED2-M80TY-8QYGC-NPKYF
 # CMake
 # 编译器使用MingGW，还需要CMake来构建
 # 官网 https://cmake.org/download/
+# CMakeList.txt
+# 程序编译时可能找不到Qt的Qt5Config.cmake，需要告诉CMake关于Qt5的安装位置，比如:
+# set(CMAKE_PREFIX_PATH ${CMAKE_PREFIX_PATH} "D:\\applications\\Qt\\5.11.3\\Src")
+# 上述路径即为Qt的sources安装位置(或者也可以设置系统环境变量)
 ```
 
 # 科学上网
