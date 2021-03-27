@@ -22,7 +22,10 @@ ZF3R0-FHED2-M80TY-8QYGC-NPKYF
 #     中国互联网络信息中心：https://mirrors.cnnic.cn/qt/
 #         安装组件: sources - 源码
 #                        Qt所有插件
-#                        MingW - 编译器
+#                        MingGW - 编译器
+# CMake
+# 编译器使用MingGW，还需要CMake来构建
+# 官网 https://cmake.org/download/
 ```
 
 # 科学上网
