@@ -34,14 +34,18 @@ ZF3R0-FHED2-M80TY-8QYGC-NPKYF
 #           2. 第一次运行CMake的时候，需要用CMake-gui配置一次，具体步骤：
 #               1）Where is the source code -  '目标程序目录'
 #               2）Where to build the binaries - '目标程序目录'/build
-#               3）点击'Configure'，选择'MinGW Makefiles'，'Specify native compilers'，添加MinGW的gcc与g++路径
+#               3）告诉CMake关于Qt的路径。
+#                   方案一：'Add Entry'，添加 'CMAKE_PREFIX_PATH' 'D:\\applications\\Qt\\5.11.3\\mingw53_32\\lib\\cmake'
+#                   方案二：CMakeList.txt中添加 set(CMAKE_PREFIX_PATH ${CMAKE_PREFIX_PATH} "D:\\applications\\Qt\\5.11.3\\mingw53_32\\lib\\cmake")
+#                   方案三：系统环境变量添加 "D:\\applications\\Qt\\5.11.3\\mingw53_32\\lib\\cmake"
+#               4）点击'Configure'，选择'MinGW Makefiles'，'Specify native compilers'，添加MinGW的gcc与g++路径
 #           3. Make在windows下的使用方法是：
-#               1）将MinGW的bin目录路径添加到系统环境变量下
+#               1）将MinGW的bin目录路径(...\Qt\Tools\mingw530_32\bin)添加到系统环境变量下
 #               2）在PowerShell中使用'MinGW32-make'命令来执行对makefile的编译
 # CMakeList.txt
 # 程序编译时可能找不到Qt的Qt5Config.cmake，需要告诉CMake关于Qt5的安装位置，比如:
-# set(CMAKE_PREFIX_PATH ${CMAKE_PREFIX_PATH} "D:\\applications\\Qt\\5.11.3\\Src")
-# 上述路径即为Qt的sources安装位置(或者也可以设置系统环境变量)
+# set(CMAKE_PREFIX_PATH ${CMAKE_PREFIX_PATH} "D:\\applications\\Qt\\5.11.3\\mingw53_32\\lib\\cmake")
+# 上述路径即为Qt的模块.cmake存放位置(或者也可以设置系统环境变量)
 ```
 
 # 科学上网
