@@ -22,10 +22,19 @@ ZF3R0-FHED2-M80TY-8QYGC-NPKYF
 #     中国互联网络信息中心：https://mirrors.cnnic.cn/qt/
 #         安装组件: sources - 源码
 #                        Qt所有插件
-#                        MingGW - 编译器
+#                        MinGW - 源码 + 安装
+# ---MingGW(尽量在上一步中就勾选Qt内置的MinGW，因为其内部包含了qmake，用于找到qt源码)
+# ---官网 https://sourceforge.net/projects/mingw-w64/files/mingw-w64/mingw-w64-release/
+# ---如果不需要在线下载，就下载离线包(已编译版本) x86_64-win32-seh
+# ---将解压出来的bin文件夹路径添加到path环境变量(搜索"编辑系统环境变量")
 # CMake
 # 编译器使用MingGW，还需要CMake来构建
 # 官网 https://cmake.org/download/
+# 注意：1. CMake在windows下不能使用命令行，直接用CMake-gui界面来编译
+#           2. 第一次运行CMake的时候，需要用CMake-gui配置一次，具体步骤：
+#               1）Where is the source code -  '目标程序目录'
+#               2）Where to build the binaries - '目标程序目录'/build
+#               3）点击'Configure'，选择'MinGW Makefiles'，'Specify native compilers'，添加MinGW的gcc与g++路径
 # CMakeList.txt
 # 程序编译时可能找不到Qt的Qt5Config.cmake，需要告诉CMake关于Qt5的安装位置，比如:
 # set(CMAKE_PREFIX_PATH ${CMAKE_PREFIX_PATH} "D:\\applications\\Qt\\5.11.3\\Src")
