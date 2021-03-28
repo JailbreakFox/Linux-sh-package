@@ -35,6 +35,9 @@ ZF3R0-FHED2-M80TY-8QYGC-NPKYF
 #               1）Where is the source code -  '目标程序目录'
 #               2）Where to build the binaries - '目标程序目录'/build
 #               3）点击'Configure'，选择'MinGW Makefiles'，'Specify native compilers'，添加MinGW的gcc与g++路径
+#           3. Make在windows下的使用方法是：
+#               1）将MinGW的bin目录路径添加到系统环境变量下
+#               2）在PowerShell中使用'MinGW32-make'命令来执行对makefile的编译
 # CMakeList.txt
 # 程序编译时可能找不到Qt的Qt5Config.cmake，需要告诉CMake关于Qt5的安装位置，比如:
 # set(CMAKE_PREFIX_PATH ${CMAKE_PREFIX_PATH} "D:\\applications\\Qt\\5.11.3\\Src")
