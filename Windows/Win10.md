@@ -13,6 +13,7 @@ https://www.vmware.com/cn/products/workstation-pro/workstation-pro-evaluation.ht
 # 激活码
 ZF3R0-FHED2-M80TY-8QYGC-NPKYF
 
+# ====== Win10 + Qt + MinGW开发环境 =====
 # Qt
 # 可以从官网(http://download.qt.io/)下载，但是速度很慢
 # 建议从国内源下载
@@ -22,7 +23,7 @@ ZF3R0-FHED2-M80TY-8QYGC-NPKYF
 #     中国互联网络信息中心：https://mirrors.cnnic.cn/qt/
 #         安装组件: sources - 源码
 #                        Qt所有插件
-#                        MinGW - 源码 + 安装
+#                        MinGW - prebuild版 + build版
 # ---MingGW(尽量在上一步中就勾选Qt内置的MinGW，因为其内部包含了qmake，用于找到qt源码)
 # ---官网 https://sourceforge.net/projects/mingw-w64/files/mingw-w64/mingw-w64-release/
 # ---如果不需要在线下载，就下载离线包(已编译版本) x86_64-win32-seh
@@ -40,12 +41,40 @@ ZF3R0-FHED2-M80TY-8QYGC-NPKYF
 #                   方案三：系统环境变量添加 "D:\\applications\\Qt\\5.11.3\\mingw53_32\\lib\\cmake"
 #               4）点击'Configure'，选择'MinGW Makefiles'，'Specify native compilers'，添加MinGW的gcc与g++路径
 #           3. Make在windows下的使用方法是：
-#               1）将MinGW的bin目录路径(...\Qt\Tools\mingw530_32\bin)添加到系统环境变量下
+#               1）将MinGW的bin目录路径(...\Qt\Tools\mingw530_32\bin 或者 ...\Qt\5.11.3\mingw530_32\bin)添加到系统环境变量下
 #               2）在PowerShell中使用'MinGW32-make'命令来执行对makefile的编译
-# CMakeList.txt
-# 程序编译时可能找不到Qt的Qt5Config.cmake，需要告诉CMake关于Qt5的安装位置，比如:
-# set(CMAKE_PREFIX_PATH ${CMAKE_PREFIX_PATH} "D:\\applications\\Qt\\5.11.3\\mingw53_32\\lib\\cmake")
-# 上述路径即为Qt的模块.cmake存放位置(或者也可以设置系统环境变量)
+#           4. CMakeList.txt
+#               程序编译时可能找不到Qt的Qt5Config.cmake，需要告诉CMake关于Qt5的安装位置，比如:
+#               set(CMAKE_PREFIX_PATH ${CMAKE_PREFIX_PATH} "D:\\applications\\Qt\\5.11.3\\mingw53_32\\lib\\cmake")
+#              上述路径即为Qt的模块.cmake存放位置(或者也可以设置系统环境变量)
+
+# ====== Win10 + Qt + MSVC开发环境 =====
+# 由于Windows下Visual Studio开发是使用MSVC编译器，因此由该编译器生成的链接库无法被MinGW使用(MinGW那套GNU是在linux平台下使用的)。
+# 因此有必要搭建一套能链接上MSVC生成库的开发环境。安装顺序最好如下：
+# CMake
+# 安装方式往上找，版本随意，越新越好，目前我用的3.20
+# Visual Studio
+# 官网 https://visualstudio.microsoft.com/zh-hans/downloads/
+# sdk https://developer.microsoft.com/zh-cn/windows/downloads/sdk-archive/
+# 离线开发环境就装离线包，能联网也能使用在线安装
+# 注意：不同版本安装过程不一样
+#         2015版本：1. 离线包 - 已保存在硬盘。只需要安装VC++开发模块
+#                           2. qt-vsaddin-msvc2015 - 已保存在硬盘。安装后，VS能使用Qt开发的插件
+#                           3. WindowsSDK - 已保存在硬盘。内部包含debug工具，安装时只需要'Debugging tools for Windows'（可认为就是linux下的gdb，下载地址在上方）
+#         2017版本：1.在线包 - 已保存在硬盘。需要在线安装，离线包未找到。安装时选择 '使用C++的桌面开发' 即可
+#                           2. qt-vsaddin-msvc2017 - 已保存在硬盘。
+#                           3. WindowsSDK - 该版本内置于在线包
+# Qt
+# 安装方式往上找，版本随意，建议使用5.12.10以上，前面的版本内置QtCreator有些bug
+#         安装组件: sources - 源码
+#                        Qt所有插件
+#                        MSVC - prebuild版（注意，对应上VS的版本号，还有X86与X64自行选择）
+# 安装完成后需要修改：
+#          工具-选项-Kits-CMake generator 选择'NMake Makefiles'（因为JOM未下载，编译时会报错）
+# 系统环境变量可以添加也可以不添
+#          ...\Qt5.12.10\5.12.10\msvc2015_64\bin
+#          ...\Qt5.12.10\5.12.10\msvc2015_64\lib\cmake
+# ！！！至此，Qtcreator的开发环境搭建完成（可以使用CMakeList.txt），且VS也能开始使用.pro去开发qt。但是如果想搭建VS与CMakeList.txt的开发环境，则继续往下看
 ```
 
 # 科学上网
