@@ -49,6 +49,7 @@ ZF3R0-FHED2-M80TY-8QYGC-NPKYF
 #              上述路径即为Qt的模块.cmake存放位置(或者也可以设置系统环境变量)
 
 # ====== Win10 + Qt + MSVC开发环境 =====
+# ----------        Qtcreator作为IDE            ---------
 # 由于Windows下Visual Studio开发是使用MSVC编译器，因此由该编译器生成的链接库无法被MinGW使用(MinGW那套GNU是在linux平台下使用的)。
 # 因此有必要搭建一套能链接上MSVC生成库的开发环境。安装顺序最好如下：
 # CMake
@@ -57,7 +58,8 @@ ZF3R0-FHED2-M80TY-8QYGC-NPKYF
 # 官网 https://visualstudio.microsoft.com/zh-hans/downloads/
 # sdk https://developer.microsoft.com/zh-cn/windows/downloads/sdk-archive/
 # 离线开发环境就装离线包，能联网也能使用在线安装
-# 注意：不同版本安装过程不一样
+# 注意：不同版本安装过程不一样。
+#           在安装之前先打开 控制中心 - 卸载程序，搜索 'sdk' 和 'redistributable'，卸载干净
 #         2015版本：1. 离线包 - 已保存在硬盘。只需要安装VC++开发模块
 #                           2. qt-vsaddin-msvc2015 - 已保存在硬盘。安装后，VS能使用Qt开发的插件
 #                           3. WindowsSDK - 已保存在硬盘。内部包含debug工具，安装时只需要'Debugging tools for Windows'（可认为就是linux下的gdb，下载地址在上方）
@@ -74,7 +76,12 @@ ZF3R0-FHED2-M80TY-8QYGC-NPKYF
 # 系统环境变量可以添加也可以不添
 #          ...\Qt5.12.10\5.12.10\msvc2015_64\bin
 #          ...\Qt5.12.10\5.12.10\msvc2015_64\lib\cmake
-# ！！！至此，Qtcreator的开发环境搭建完成（可以使用CMakeList.txt），且VS也能开始使用.pro去开发qt。但是如果想搭建VS与CMakeList.txt的开发环境，则继续往下看
+# ！！！至此，Qtcreator的开发环境搭建完成（可以使用CMakeList.txt），且VS也能开始使用.pro去开发qt
+# ----------        VisualStudio作为IDE            ---------
+# 如果想用CMakeList.txt开发，则需在VS2017以上版本，安装过程中选择 '开发C++桌面' 与 'CMake工具'
+# 如果想开发Qt应用，需要：
+#          1. 安装qt-vsaddin-msvc，方法在上面
+#          2. 打开VS后，点击 'Qt VS Tools' - 'Qt Options' -'Add'，添加qtcreator.exe的路径
 ```
 
 # 科学上网
