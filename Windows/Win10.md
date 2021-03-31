@@ -65,7 +65,7 @@ ZF3R0-FHED2-M80TY-8QYGC-NPKYF
 #                           3. WindowsSDK - 已保存在硬盘。内部包含debug工具，安装时只需要'Debugging tools for Windows'（可认为就是linux下的gdb，下载地址在上方）
 #         2017版本：1.在线包 - 已保存在硬盘。需要在线安装，离线包未找到。安装时选择 '使用C++的桌面开发' 即可
 #                           2. qt-vsaddin-msvc2017 - 已保存在硬盘。
-#                           3. WindowsSDK - 该版本内置于在线包
+#                           3. WindowsSDK - 已保存在硬盘。与2015使用相同版本，即windows sdk 10.0.16299
 # Qt
 # 安装方式往上找，版本随意，建议使用5.12.10以上，前面的版本内置QtCreator有些bug
 #         安装组件: sources - 源码
