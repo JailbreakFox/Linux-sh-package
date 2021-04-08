@@ -13,6 +13,10 @@ https://www.vmware.com/cn/products/workstation-pro/workstation-pro-evaluation.ht
 # 激活码
 ZF3R0-FHED2-M80TY-8QYGC-NPKYF
 
+# Dependencies
+https://github.com/lucasg/Dependencies
+查看可执行文件的依赖库
+
 # ====== Win10 + Qt + MinGW开发环境 =====
 # Qt
 # 可以从官网(http://download.qt.io/)下载，但是速度很慢
