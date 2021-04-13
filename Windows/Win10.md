@@ -88,6 +88,29 @@ https://github.com/lucasg/Dependencies
 #          2. 打开VS后，点击 'Qt VS Tools' - 'Qt Options' -'Add'，添加qtcreator.exe的路径
 ```
 
+# Hexo博客环境搭建
+```sh
+# 下载 node.js
+# 官网 https://nodejs.org/en/
+
+# 使用npm安装Hexo
+npm install -g hexo-cli
+
+# 初始化hexo框架
+# hexo init
+# 启动本地服务
+# hexo s
+#新建文章
+# hexo new "postName" 
+
+# 清除缓存
+# hexo clean
+# 编译生成静态页面
+# hexo generate = hexo g
+# 部署到GitHub
+# hexo deploy = hexo d
+```
+
 # 科学上网
 ```sh
 # 购买vultr服务器
