@@ -15,9 +15,12 @@ ZF3R0-FHED2-M80TY-8QYGC-NPKYF
 
 # Dependencies
 https://github.com/lucasg/Dependencies
-查看可执行文件的依赖库
+查看可执行文件的依赖库  
+```
 
-# ====== Win10 + Qt + MinGW开发环境 =====
+# 开发环境搭建
+====== Win10 + Qt + MinGW开发环境 =====
+```sh
 # Qt
 # 可以从官网(http://download.qt.io/)下载，但是速度很慢
 # 建议从国内源下载
@@ -51,8 +54,9 @@ https://github.com/lucasg/Dependencies
 #               程序编译时可能找不到Qt的Qt5Config.cmake，需要告诉CMake关于Qt5的安装位置，比如:
 #               set(CMAKE_PREFIX_PATH ${CMAKE_PREFIX_PATH} "D:\\applications\\Qt\\5.11.3\\mingw53_32\\lib\\cmake")
 #              上述路径即为Qt的模块.cmake存放位置(或者也可以设置系统环境变量)
-
-# ====== Win10 + Qt + MSVC开发环境 =====
+```
+====== Win10 + Qt + MSVC开发环境 =====
+```sh
 # ----------        Qtcreator作为IDE            ---------
 # 由于Windows下Visual Studio开发是使用MSVC编译器，因此由该编译器生成的链接库无法被MinGW使用(MinGW那套GNU是在linux平台下使用的)。
 # 因此有必要搭建一套能链接上MSVC生成库的开发环境。安装顺序最好如下：
@@ -86,6 +90,30 @@ https://github.com/lucasg/Dependencies
 # 如果想开发Qt应用，需要：
 #          1. 安装qt-vsaddin-msvc，方法在上面
 #          2. 打开VS后，点击 'Qt VS Tools' - 'Qt Options' -'Add'，添加qtcreator.exe的路径
+```
+====== VSCode + Qt + MinGW开发环境 =====
+```sh
+# 官网安装 https://code.visualstudio.com/
+# 如果安装速度较慢，将下载连接
+# https://az764295.vo.msecnd.net/stable/... 部分改为
+# https://vscode.cdn.azure.cn/stable/...
+
+# 安装必要插件
+# 1. chinese(simplified)
+# 2. C++ 
+# 3. CMake Tools
+# 4. CMake
+# 5. Remote Development
+
+# 安装编译器
+# MINGW安装方法看上面
+# MSVC安装方法看上面，可以用QT预安装的，也可以使用VS中带的
+
+# 安装Qt
+# 安装方法看上面
+
+# 链接编译器
+# 添加环境变量后，打开项目，并点击最下方一栏cmake里的编译工具选项，选择[SCan for kits]，就能加载新编译器
 ```
 
 # Hexo博客环境搭建
