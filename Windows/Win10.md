@@ -114,6 +114,9 @@ https://github.com/lucasg/Dependencies
 
 # 链接编译器
 # 添加环境变量后，打开项目，并点击最下方一栏cmake里的编译工具选项，选择[SCan for kits]，就能加载新编译器
+
+# 修改编码格式
+# File(文件)->Preferences(首选项)->Usersettings(设置)，搜索encoding ，然后修改为GB2312
 ```
 
 # Hexo博客环境搭建
