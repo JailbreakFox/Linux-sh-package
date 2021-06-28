@@ -21,6 +21,30 @@ chsh -s $(which zsh)
 # ZSH_THEME="mortalscumbag"
 ```
 
+# 搭建C++与Qt开发环境
+Qt只有旧版本有Mac安装包(比如5.12.0)，新版本几乎都是需要源码安装，这边只描述怎么源码安装。另外有一点需要注意，Mac目前出了新款的M1型号(架构为ARM64)，但是亲测即无法用安装包也无法源码编译，据Qt官方发布Qt6.2以后将原生支持Mac M1。
+```sh
+# 安装编译器与cmake
+brew install gcc cmake
+
+# 下载Qt源码(http://mirrors.ustc.edu.cn/qtproject/official_releases/qt/5.15/5.15.0/single/)
+# 建议从国内源下载
+#     中国科学技术大学：http://mirrors.ustc.edu.cn/qtproject/
+#     清华大学：https://mirrors.tuna.tsinghua.edu.cn/qt/
+#     北京理工大学：http://mirror.bit.edu.cn/qtproject/
+#     中国互联网络信息中心：https://mirrors.cnnic.cn/qt/
+tar -xvf qt-everywhere-src-5.15.0.tar
+cd qt5.15.0
+sudo ./configure -prefix /usr/local/qt5.15.0/ -debug-and-release -opensource
+# 输入o选择开源版本，选择Y接受协议
+sudo make #不要多核编译，会出问题，这边大概要花10~20小时，所以建议直接用旧版dmg包安装
+sudo make install
+
+# 设置环境变量
+vim ~/.zshrc # 前提是使用zsh
+export PATH=$PATH:/usr/local/qt5.15.0/bin
+```
+
 # 搭建godot环境
 ```sh
 # 安装编译器
