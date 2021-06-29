@@ -117,6 +117,7 @@ https://github.com/lucasg/Dependencies
 
 # 修改编码格式
 # File(文件)->Preferences(首选项)->Usersettings(设置)，搜索encoding ，然后修改为GB2312
+# 另外勾选Auto Guess Encoding
 ```
 
 # Hexo博客环境搭建
