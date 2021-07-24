@@ -58,6 +58,17 @@ scons platform=osx arch=x86_64 --jobs=$(sysctl -n hw.logicalcpu)
 scons platform=osx arch=arm64 --jobs=$(sysctl -n hw.logicalcpu)
 ```
 
+# Boost库静态依赖
+```sh
+# 下载开发包
+https://mirrors.ustc.edu.cn/homebrew-bottles/bottles
+
+# 在CMakeLists.txt中加入以下语句
+# 注意，必须写在find_package之前
+set(CMAKE_INCLUDE_PATH ${CMAKE_INCLUDE_PATH} "?/boost/1.76.0/include")
+set(CMAKE_LIBRARY_PATH ${CMAKE_LIBRARY_PATH} "?/boost/1.76.0/lib")
+```
+
 # 翻墙
 ```sh
 # ===== 方案一 =====
