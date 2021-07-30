@@ -105,17 +105,15 @@ https://github.com/lucasg/Dependencies
 # 4. CMake
 # 5. Remote Development
 
-# 安装编译器
-# MINGW安装方法看上面
-# MSVC安装方法看上面，可以用QT预安装的，也可以使用VS中带的
-
-# 安装Qt
-# 安装方法看上面
+# 安装编译器 + Qt + CMake
+# MinGW安装版本配套: qt-opensource-windows-x86-5.12.10及其自带MinGW编译器 + CMake 3.14(3.13以上版本，且3.20不可用)
+# MSVC安装版本配套，qt-opensource-windows-x86-5.12.0及其自带MSVC编译器 + CMake 3.13
 
 # 链接编译器
 # 添加环境变量后，打开项目，并点击最下方一栏cmake里的编译工具选项，选择[SCan for kits]，就能加载新编译器
 
-# 修改编码格式
+# 修改编码格式(MinGW环境使用默认UTF-8编码文件，文件行尾推荐使用Linux的LF)
+# MSVC环境需要修改编码格式:
 # File(文件)->Preferences(首选项)->Usersettings(设置)，搜索encoding ，然后修改为GB2312
 # 另外勾选Auto Guess Encoding
 ```
