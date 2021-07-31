@@ -106,8 +106,7 @@ https://github.com/lucasg/Dependencies
 # 5. Remote Development
 
 # 安装编译器 + Qt + CMake
-# MinGW安装版本配套: qt-opensource-windows-x86-5.12.10及其自带MinGW编译器 + CMake 3.14(3.13以上版本，且3.20不可用)
-# MSVC安装版本配套，qt-opensource-windows-x86-5.12.0及其自带MSVC编译器 + CMake 3.13
+# MinGW / MSVC版本配套: qt-opensource-windows-x86-5.12.10及其自带MinGW / MSVC编译器 + CMake 3.14(3.13以上版本，且3.20不可用)
 
 # 链接编译器
 # 添加环境变量后，打开项目，并点击最下方一栏cmake里的编译工具选项，选择[SCan for kits]，就能加载新编译器
