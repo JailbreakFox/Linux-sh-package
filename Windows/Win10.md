@@ -117,6 +117,12 @@ https://github.com/lucasg/Dependencies
 # 另外勾选Auto Guess Encoding
 ```
 
+# Qt打包工具的使用
+```sh
+# 将已经编译好的exe文件单独放到某目录下
+windeployqt 'XXX.exe'
+```
+
 # Hexo博客环境搭建
 ```sh
 # 下载 node.js
