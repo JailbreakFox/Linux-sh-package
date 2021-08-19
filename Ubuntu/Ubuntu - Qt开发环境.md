@@ -29,24 +29,63 @@ deb http://mirrors.aliyun.com/ubuntu/ xenial-security multiverse
 sudo apt update
 ```
 
-# Qt开发环境搭建
+# Qt开发环境搭建 - apt版本
 ```sh
 # ===== 安装Qt =====
 # 默认安装库里的Qt版本与依赖
 sudo apt install qtcreator qt5-default
 
-# 可以使用安装包
+# ===== 安装必要软件 =====
+$ sudo apt install g++ gdb openssh-server cmake
+```
+
+# Qt开发环境搭建 - 安装包版本
+```sh
 # 从官网(http://download.qt.io/)下载，但是速度很慢
 # 建议从国内源下载
 #     中国科学技术大学：http://mirrors.ustc.edu.cn/qtproject/
 #     清华大学：https://mirrors.tuna.tsinghua.edu.cn/qt/
 #     北京理工大学：http://mirror.bit.edu.cn/qtproject/
 #     中国互联网络信息中心：https://mirrors.cnnic.cn/qt/
-$ sudo chmod +x ./qt-opensource-linux-x64-5.7.1.run
-$ ./qt-opensource-linux-x64-5.7.1.run
+$ sudo chmod +x ./qt-opensource-linux-x64-5.5.1.run
+$ ./qt-opensource-linux-x64-5.5.1.run
+```
 
-# ===== 安装必要软件 =====
-$ sudo apt install g++ gdb openssh-server cmake
+# Qt版本选择工具使用
+```sh
+# 查看qt版本
+& qmake -v
+
+# qmake的本质是qtchooser
+& ll /usr/bin/qmake
+lrwxrwxrwx 1 root root 9 10月 18 2019 /usr/bin/qmake -> qtchooser*
+
+# 查看qtchooser当前可选项
+$ qtchooser -l
+4
+5
+default
+qt4-aarch64-linux-gnu
+qt4
+qt5-aarch64-linux-gnu
+qt5
+
+# 添加qtchooser版本配置
+# 比如我们已经在/opt/Qt5.5.1目录下安装qt
+# 则先/usr/share/qtchooser/目录下新建文件qt5.5.1.conf
+/opt/Qt5.5.1/gcc_64/bin
+/opt/Qt5.5.1
+
+# 添加软链接
+ln -s /usr/share/qtchooser/qt5.5.1.conf /usr/lib/x86_64-linux-gnu/qtchooser/qt5.5.1.conf
+# 再次 'qtchooser -l' 即可看到已有qt5.5.1版本选择
+
+# 最后添加环境变量 ~/.bashrc
+export QT_SELECT=qt5.5.1
+export QTDIR=/opt/Qt5.5.1/5.7/gcc_64
+export PATH=$QTDIR/bin:$PATH
+export MANPATH=$QTDIR/man:$MANPATH
+# 再次 'qmake -v' 可查看已经选择的qt版本
 ```
 
 # Qt打包工具使用
