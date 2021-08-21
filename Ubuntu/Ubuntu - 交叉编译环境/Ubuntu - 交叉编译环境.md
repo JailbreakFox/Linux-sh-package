@@ -1,5 +1,7 @@
-# 系统镜像下载
-http://mirrors.ustc.edu.cn/ubuntu-releases/16.04/
+# 开发工具下载
+- 镜像 http://mirrors.ustc.edu.cn/ubuntu-releases/16.04/
+- GCC http://mirrors.concertpass.com/gcc/releases/gcc-5.4.0/
+- Qt源码 https://download.qt.io/new_archive/qt/5.5/5.5.1/single/
 
 # 配置源
 直接往默认源文件中加入清华源

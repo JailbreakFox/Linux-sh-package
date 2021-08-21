@@ -111,14 +111,23 @@ $ linuxdeployqt '可执行程序' -appimage
 
 # 生成root登陆用户
 ```sh
+# ===== 登陆界面添加root =====
+# 修改root密码
+$ sudo passwd root
 # 修改配置文件
 $ vim /usr/share/lightdm/lightdm.conf.d/50-unity-greeter.conf
 # 末尾添加
 greeter-show-manual-login=true #手工输入登陆系统的用户名和密码
 all-guest=false              #不允许guest登录（可选）
+# 重启后登陆出现报错修改
+# 修改/root/.profile最后一行为
+tty -s && mesg n || true
 
+# ===== ssh添加root用户 =====
 # 设置ssh可登陆
 $ vim /etc/ssh/sshd_config
 # 修改PermitRootLogin
 PermitRootLogin yes
+# 重启服务
+& systemctl restart sshd.services
 ```
