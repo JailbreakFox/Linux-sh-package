@@ -28,39 +28,93 @@ deb http://mirrors.aliyun.com/ubuntu/ xenial-security multiverse
 ```
 更新源
 ```sh
-sudo apt update
+$ sudo apt update
 ```
 
-# deb打包编译环境搭建
+# QT交叉编译环境搭建 - x86
 ```sh
 # 安装cmake
 # 更换源后默认安装的cmake版本为3.5，如果觉得低，可以手动安装
 # 官网 https://cmake.org/download/ ，下载一个sh包
-sudo chmod 777 cmake-3.13.2-Linux-x86_64.sh
-./cmake-3.13.2-Linux-x86_64.sh
-cd /usr/bin
-sudo ln -s cmake 'cmake可执行程序路径'
+$ sudo chmod 777 cmake-3.13.2-Linux-x86_64.sh
+$ ./cmake-3.13.2-Linux-x86_64.sh
+$ cd /usr/bin
+$ sudo ln -s cmake 'cmake可执行程序路径'
 
-# 降级安装gcc
-# 默认安装的gcc版本为5.4，如果我们的程序需要用c98来编译，则gcc需要降级到4.8.5
-# 否则链接库编译的时候会根据cmake给定的编译c++11选项来同时编译库
-sudo apt install gcc-4.8
-sudo apt install g++-4.8
-cd /usr/bin
-sudo ln -s gcc-4.8 gcc
-sudo ln -s g++-4.8 g++
-```
+# 安装Qt5默认依赖环境
+$ sudo apt-get build-dep qt5-default
 
-# deb打包环境搭建
-```sh
-# debuild环境
-sudo apt install dh-make devscripts
+# 搭建Qt源码文件目录如下
+$ tree tempDir
+tempDir
+├── Qt-build       # 将Qt源码包解压至此
+└── Qt5.5.1_static # 在运行configure时，设置Qt prefix，最终输出编译结果至此
 
-# dpkg-buildpackage环境
-sudo apt install dh-make
+# 新建如下脚本 autoConfigure.sh ，用于构建Qt源码的makefile
+-------------------- 静态库-编译最快版本 --------------------
+#! /bin/bash
+QT_INSTALL_PATH="-prefix /home/xyh/Qt5.5.1_static"     # Qt安装路径(自己对应修改)
+QT_COMPLIER+="-platform linux-g++-64"  # 编译器
 
-# dpkg-deb环境
-sudo apt install fakeroot
+CONFIG_PARAM+="-static "               # 静态编译
+CONFIG_PARAM+="-release "              # 编译release
+CONFIG_PARAM+="-make libs "
+CONFIG_PARAM+="-nomake tools "         # 不编译tools
+CONFIG_PARAM+="-nomake examples "      # 不编译examples
+CONFIG_PARAM+="-nomake tests "         # 不编译tests
+
+CONFIG_PARAM+="-skip qtwebengine -no-qml-debug "
+CONFIG_PARAM+="-qt-zlib -qt-pcre -qt-libpng -qt-libjpeg -qt-freetype -qt-xcb -qt-harfbuzz -opengl desktop "
+CONFIG_PARAM+="-dbus-linked -openssl-linked -feature-freetype -fontconfig "
+CONFIG_PARAM+="-sysconfdir /etc/xdg -no-rpath -strip "
+# 选择Qt版本(开源, 商业), 并自动确认许可认证
+CONFIG_PARAM+="-opensource "           # 编译开源版本, -commercial商业版本
+CONFIG_PARAM+="-confirm-license "      # 自动确认许可认证
+
+echo "./configure $CONFIG_PARAM $QT_COMPLIER $QT_INSTALL_PATH"
+./configure $CONFIG_PARAM $QT_COMPLIER $QT_INSTALL_PATH
+-------------------- 静态库-编译最全版本 --------------------
+#! /bin/bash
+QT_INSTALL_PATH="-prefix /home/xyh/Qt5.5.1_static"     # Qt安装路径(自己对应修改)
+QT_COMPLIER+="-platform linux-g++-64"  # 编译器
+
+CONFIG_PARAM+="-static "               # 静态编译
+CONFIG_PARAM+="-release "              # 编译release
+# 选择Qt版本(开源, 商业), 并自动确认许可认证
+CONFIG_PARAM+="-opensource "           # 编译开源版本, -commercial商业版本
+CONFIG_PARAM+="-confirm-license "      # 自动确认许可认证
+
+echo "./configure $CONFIG_PARAM $QT_COMPLIER $QT_INSTALL_PATH"
+./configure $CONFIG_PARAM $QT_COMPLIER $QT_INSTALL_PATH
+----------------------------------------------------
+
+# 将脚本放到源码解压目录Qt-build并执行
+# 这步实际就是在./configure
+$ chmod +x autoConfigure.sh
+$ ./autoConfigure.sh
+
+# 编译
+$ make -j $(grep -c ^processor /proc/cpuinfo) # 后面这句可查看当前系统最高可运行编译的核数
+
+# 安装
+$ make install -j $(grep -c ^processor /proc/cpuinfo)
+
+# 添加该Qt版本的环境变量(默认用root用户搭建的交叉环境)，修改/root/.bashrc，添加如下行
+----------------------------------------------------
+export QTDIR=tempDir/Qt5.5.1_static
+export PATH=$QTDIR/bin:$PATH
+export MANPATH=$QTDIR/doc/man:$MANPATH
+export LD_LIBRARY_PATH=$QTDIR/lib:$LD_LIBRARY_PATH
+----------------------------------------------------
+
+# 更新bashrc后查看是否已链接上Qt
+$ source /root/.bashrc
+$ qmake -v
+
+# 在安装完成后可运行实例检查安装情况
+# 如果有编译examples模块，可直接到tempDir/Qt5.5.1_static/examples下运行
+# 如果没有编译该模块，则运行QTest
+# 另外，静态编译只在bin目录下生成qmake，而没有make，因此实例文件只能用.pro来编译makefile
 ```
 
 # 生成root登陆用户
