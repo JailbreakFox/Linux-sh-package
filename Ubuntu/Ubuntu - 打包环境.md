@@ -60,3 +60,17 @@ sudo apt install dh-make
 # dpkg-deb环境
 sudo apt install fakeroot
 ```
+
+# 生成root登陆用户
+```sh
+# 修改配置文件
+$ vim /usr/share/lightdm/lightdm.conf.d/50-unity-greeter.conf
+# 末尾添加
+greeter-show-manual-login=true #手工输入登陆系统的用户名和密码
+all-guest=false              #不允许guest登录（可选）
+
+# 设置ssh可登陆
+$ vim /etc/ssh/sshd_config
+# 修改PermitRootLogin
+PermitRootLogin yes
+```
