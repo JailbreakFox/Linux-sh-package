@@ -31,6 +31,77 @@ deb http://mirrors.aliyun.com/ubuntu/ xenial-security multiverse
 $ sudo apt update
 ```
 
+# GCC交叉编译环境搭建 - x86
+```
+1. 源码编译
+2. apt下载
+```
+***1、源码编译***  
+GCC源码编译对环境要求很高，比如ubuntu16.04几乎编不了4.8.5版本的GCC，所以如果能找到已编译版本或者能使用apt下载，则优先考虑，源码编译方法如下:
+```sh
+# 官网 https://gcc.gnu.org/releases.html ，下载一个GCC
+# 以GCC-5.4.0为例 http://mirrors.concertpass.com/gcc/releases/gcc-5.4.0/
+
+# 搭建GCC源码文件目录如下
+$ tree tempDir
+tempDir
+├── gcc-build # 将GCC源码包解压至此
+└── gcc-5.4.0 # 在运行configure时，设置GCC prefix，最终输出编译结果至此
+
+# 安装GCC编译依赖
+# 方案一: GCC源码自带安装依赖的文件
+$ cd tempDir/gcc-build/contrib
+$ ./download_prerequisites
+# 方案二: 直接下载(推荐，速度更快)
+& sudo apt-get install build-essential libgmp-dev libmpfr-dev libmpc-dev
+
+# 在源码目录下新建build目录并开始编译
+$ cd tempDir/gcc-build
+$ ../configure --prefix='安装路径' --enable-threads=posix --disable-checking --disable-multilib
+
+# 编译
+$ make -j $(grep -c ^processor /proc/cpuinfo) # 后面这句可查看当前系统最高可运行编译的核数
+
+# 安装
+$ make install -j $(grep -c ^processor /proc/cpuinfo)
+
+# .bashrc末尾添加添加环境变量
+& vi /root/.bashrc
+export PATH='build目录下的bin文件夹路径':$PATH
+
+# 实例检验
+# 修改CTest项目CMakeLists.txt文件下的gcc与g++路径
+# 编译运行
+```
+***2、apt下载***  
+```sh
+# 下载安装
+& sudo apt-get install gcc-4.8 g++-4.8
+
+# .bashrc末尾添加添加环境变量
+& vi /root/.bashrc
+export PATH='build目录下的bin文件夹路径':$PATH
+
+# 实例检验
+# 修改CTest项目CMakeLists.txt文件下的gcc与g++路径
+# 编译运行
+```
+
+# GCC交叉编译环境搭建 - arm
+由于arm版GCC源码编译困难，直接网上找已编译版本
+```sh
+# ARM已编译版本GCC下载网址 (arm 针对是是 32 位的， aarch64 针对 Arm64.)
+# https://mirrors.tuna.tsinghua.edu.cn/armbian-releases/_toolchain/
+
+# .bashrc末尾添加添加环境变量
+& vi /root/.bashrc
+export PATH='build目录下的bin文件夹路径':$PATH
+
+# 实例检验
+# 修改CTest项目CMakeLists.txt文件下的gcc与g++路径
+# 编译运行
+```
+
 # QT交叉编译环境搭建 - x86
 ```sh
 # 安装cmake
