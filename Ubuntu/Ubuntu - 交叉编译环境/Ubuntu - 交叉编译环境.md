@@ -2,6 +2,7 @@
 - 镜像 http://mirrors.ustc.edu.cn/ubuntu-releases/16.04/
 - GCC http://mirrors.concertpass.com/gcc/releases/gcc-5.4.0/
 - Qt源码 https://download.qt.io/new_archive/qt/5.5/5.5.1/single/
+- 已编译交叉编译环境 https://zhuanlan.zhihu.com/p/79043170
 
 # 配置源
 直接往默认源文件中加入清华源
@@ -94,12 +95,37 @@ export PATH='build目录下的bin文件夹路径':$PATH
 # https://mirrors.tuna.tsinghua.edu.cn/armbian-releases/_toolchain/
 
 # .bashrc末尾添加添加环境变量
-& vi /root/.bashrc
+& vim /root/.bashrc
+'
 export PATH='build目录下的bin文件夹路径':$PATH
+'
 
 # 实例检验
-# 修改CTest项目CMakeLists.txt文件下的gcc与g++路径
-# 编译运行
+# CTest项目编译运行
+$ cmake -DCROSS_COMPILE_FRAMEWORK=aarch64 ..
+$ make
+```
+
+# GCC交叉编译环境搭建 - mips
+网上已编译版本很难找，只有最新和最旧的版本
+```sh
+# 旧版下载地址 http://mirrors.aliyun.com/loongson/mirrors.html
+# 新版下载地址 http://www.loongnix.cn/index.php/Cross-compile
+
+# 这边用已经下载好的预编译版本
+# 直接解压 cross-gcc-4.9.3-n64-loongson-rc6.1
+
+# 添加环境变量
+$ vim /root/.bashrc
+'
+export LD_LIBRARY_PATH=?/cross-gcc-4.9.3-n64-loongson-rc6.1/usr/x86_64-unknown-linux-gnu/mips64el-loongson-linux/lib:$LD_LIBRARY_PATH
+export PATH=?/cross-gcc-4.9.3-n64-loongson-rc6.1/usr/bin:$PATH
+'
+
+# 实例检验
+# CTest项目编译运行
+$ cmake -DCROSS_COMPILE_FRAMEWORK=mips64 ..
+$ make
 ```
 
 # QT交叉编译环境搭建 - x86
