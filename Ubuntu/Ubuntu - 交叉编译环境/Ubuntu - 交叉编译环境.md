@@ -145,14 +145,15 @@ $ sudo apt-get build-dep qt5-default
 $ tree tempDir
 tempDir
 ├── Qt-build       # 将Qt源码包解压至此
-└── Qt5.5.1_static # 在运行configure时，设置Qt prefix，最终输出编译结果至此
+└── Qt5.5.1        # 在运行configure时，设置Qt prefix，最终输出编译结果至此
 
 # 新建如下脚本 autoConfigure.sh ，用于构建Qt源码的makefile
--------------------- 静态库-编译最快版本 --------------------
+-------------------- 编译最快版本 --------------------
 #! /bin/bash
-QT_INSTALL_PATH="-prefix /home/xyh/Qt5.5.1_static"     # Qt安装路径(自己对应修改)
+QT_INSTALL_PATH="-prefix /home/xyh/Qt5.5.1"     # Qt安装路径(自己对应修改)
 QT_COMPLIER+="-platform linux-g++-64"  # 编译器
 
+#CONFIG_PARAM+="-shared "               # 动态编译
 CONFIG_PARAM+="-static "               # 静态编译
 CONFIG_PARAM+="-release "              # 编译release
 CONFIG_PARAM+="-make libs "
@@ -170,11 +171,12 @@ CONFIG_PARAM+="-confirm-license "      # 自动确认许可认证
 
 echo "./configure $CONFIG_PARAM $QT_COMPLIER $QT_INSTALL_PATH"
 ./configure $CONFIG_PARAM $QT_COMPLIER $QT_INSTALL_PATH
--------------------- 静态库-编译最全版本 --------------------
+-------------------- 编译最全版本 --------------------
 #! /bin/bash
-QT_INSTALL_PATH="-prefix /home/xyh/Qt5.5.1_static"     # Qt安装路径(自己对应修改)
+QT_INSTALL_PATH="-prefix /home/xyh/Qt5.5.1"     # Qt安装路径(自己对应修改)
 QT_COMPLIER+="-platform linux-g++-64"  # 编译器
 
+#CONFIG_PARAM+="-shared "               # 动态编译
 CONFIG_PARAM+="-static "               # 静态编译
 CONFIG_PARAM+="-release "              # 编译release
 # 选择Qt版本(开源, 商业), 并自动确认许可认证
@@ -198,7 +200,7 @@ $ make install -j $(grep -c ^processor /proc/cpuinfo)
 
 # 添加该Qt版本的环境变量(默认用root用户搭建的交叉环境)，修改/root/.bashrc，添加如下行
 ----------------------------------------------------
-export QTDIR=tempDir/Qt5.5.1_static
+export QTDIR=tempDir/Qt5.5.1
 export PATH=$QTDIR/bin:$PATH
 export MANPATH=$QTDIR/doc/man:$MANPATH
 export LD_LIBRARY_PATH=$QTDIR/lib:$LD_LIBRARY_PATH
@@ -209,9 +211,68 @@ $ source /root/.bashrc
 $ qmake -v
 
 # 在安装完成后可运行实例检查安装情况
-# 如果有编译examples模块，可直接到tempDir/Qt5.5.1_static/examples下运行
+# 如果有编译examples模块，可直接到tempDir/Qt5.5.1/examples下运行
 # 如果没有编译该模块，则运行QTest
 # 另外，静态编译只在bin目录下生成qmake，而没有make，因此实例文件只能用.pro来编译makefile
+```
+
+# QT交叉编译环境搭建 - arm/mips
+```sh
+# 安装cmake
+# 查看x86一节
+
+# 安装Qt5默认依赖环境
+# 查看x86一节
+
+# 搭建Qt源码文件目录如下
+# 查看x86一节
+
+# 新增qmake.conf文件
+$ cp -r qtbase/mkspecs/linux-arm-gnueabi-g++ qtbase/mkspecs/linux-arm-g++
+$ vim qtbase/mkspecs/linux-arm-g++/qmake.conf
+'
+#
+# qmake configuration for building with linux-arm-g++
+#
+
+MAKEFILE_GENERATOR      = UNIX
+CONFIG                 += incremental
+QMAKE_INCREMENTAL_STYLE = sublib
+
+include(../common/linux.conf)
+include(../common/gcc-base-unix.conf)
+include(../common/g++-unix.conf)
+
+# modifications to g++.conf
+QMAKE_CC                = aarch64-linux-gnu-gcc
+QMAKE_CXX               = aarch64-linux-gnu-g++
+QMAKE_LINK              = aarch64-linux-gnu-g++
+QMAKE_LINK_SHLIB        = aarch64-linux-gnu-g++
+
+# modifications to linux.conf
+QMAKE_AR                = aarch64-linux-gnu-ar cqs
+QMAKE_OBJCOPY           = aarch64-linux-gnu-objcopy
+QMAKE_NM                = aarch64-linux-gnu-nm -P
+QMAKE_STRIP             = aarch64-linux-gnu-strip
+load(qt_config)
+'
+
+# 新建如下脚本 autoConfigure.sh ，用于构建Qt源码的makefile
+# 查看x86一节，只需修改如下行
+'
+QT_COMPLIER+="-platform linux-arm-g++"
+'
+
+# 将脚本放到源码解压目录Qt-build并执行
+# 查看x86一节
+
+# 编译
+# 查看x86一节
+
+# 安装
+# 查看x86一节
+
+
 ```
 
 # 生成root登陆用户
