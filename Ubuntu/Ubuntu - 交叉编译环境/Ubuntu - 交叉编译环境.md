@@ -139,6 +139,7 @@ $ cd /usr/bin
 $ sudo ln -s cmake 'cmake可执行程序路径'
 
 # 安装Qt5默认依赖环境
+# !!注意只有编译最快版本的时候需要安装该环境，如果安装最全版本则不需要该依赖(估计是会使用自己打出来的依赖)
 $ sudo apt-get build-dep qt5-default
 
 # 搭建Qt源码文件目录如下
@@ -150,45 +151,43 @@ tempDir
 # 新建如下脚本 autoConfigure.sh ，用于构建Qt源码的makefile
 -------------------- 编译最快版本 --------------------
 #! /bin/bash
-QT_INSTALL_PATH="-prefix /home/xyh/Qt5.5.1"     # Qt安装路径(自己对应修改)
-QT_COMPLIER+="-platform linux-g++-64"  # 编译器
+QT_INSTALL_PATH="-prefix /home/xyh/Qt5.5.1" # Qt安装路径(自己对应修改)
+QT_COMPLIER+="-platform linux-g++-64"       # 编译器(x64架构必须写成platform.aarch64架构必须写成xplatform)
 
-#CONFIG_PARAM+="-shared "               # 动态编译
-CONFIG_PARAM+="-static "               # 静态编译
-CONFIG_PARAM+="-release "              # 编译release
+CONFIG_PARAM+="-shared "                    # 编译动态库(动态库为'-static')
+CONFIG_PARAM+="-release "                   # 编译release
 CONFIG_PARAM+="-make libs "
-CONFIG_PARAM+="-nomake tools "         # 不编译tools
-CONFIG_PARAM+="-nomake examples "      # 不编译examples
-CONFIG_PARAM+="-nomake tests "         # 不编译tests
+CONFIG_PARAM+="-nomake tools "              # 不编译tools
+CONFIG_PARAM+="-nomake examples "           # 不编译examples
+CONFIG_PARAM+="-nomake tests "              # 不编译tests
 
 CONFIG_PARAM+="-skip qtwebengine -no-qml-debug "
 CONFIG_PARAM+="-qt-zlib -qt-pcre -qt-libpng -qt-libjpeg -qt-freetype -qt-xcb -qt-harfbuzz -opengl desktop "
 CONFIG_PARAM+="-dbus-linked -openssl-linked -feature-freetype -fontconfig "
 CONFIG_PARAM+="-sysconfdir /etc/xdg -no-rpath -strip "
 # 选择Qt版本(开源, 商业), 并自动确认许可认证
-CONFIG_PARAM+="-opensource "           # 编译开源版本, -commercial商业版本
-CONFIG_PARAM+="-confirm-license "      # 自动确认许可认证
+CONFIG_PARAM+="-opensource "                # 编译开源版本, -commercial商业版本
+CONFIG_PARAM+="-confirm-license "           # 自动确认许可认证
 
-echo "./configure $CONFIG_PARAM $QT_COMPLIER $QT_INSTALL_PATH"
-./configure $CONFIG_PARAM $QT_COMPLIER $QT_INSTALL_PATH
+echo "../configure $CONFIG_PARAM $QT_COMPLIER $QT_INSTALL_PATH"
+../configure $CONFIG_PARAM $QT_COMPLIER $QT_INSTALL_PATH
 -------------------- 编译最全版本 --------------------
 #! /bin/bash
-QT_INSTALL_PATH="-prefix /home/xyh/Qt5.5.1"     # Qt安装路径(自己对应修改)
-QT_COMPLIER+="-platform linux-g++-64"  # 编译器
+QT_INSTALL_PATH="-prefix /home/xyh/Qt5.5.1" # Qt安装路径(自己对应修改)
+QT_COMPLIER+="-platform linux-g++-64"       # 编译器(x64架构必须写成platform.aarch64架构必须写成xplatform)
 
-#CONFIG_PARAM+="-shared "               # 动态编译
-CONFIG_PARAM+="-static "               # 静态编译
-CONFIG_PARAM+="-release "              # 编译release
+CONFIG_PARAM+="-shared "                    # 编译动态库(动态库为'-static')
+CONFIG_PARAM+="-release "                   # 编译release
 # 选择Qt版本(开源, 商业), 并自动确认许可认证
-CONFIG_PARAM+="-opensource "           # 编译开源版本, -commercial商业版本
-CONFIG_PARAM+="-confirm-license "      # 自动确认许可认证
+CONFIG_PARAM+="-opensource "                # 编译开源版本, -commercial商业版本
+CONFIG_PARAM+="-confirm-license "           # 自动确认许可认证
 
-echo "./configure $CONFIG_PARAM $QT_COMPLIER $QT_INSTALL_PATH"
-./configure $CONFIG_PARAM $QT_COMPLIER $QT_INSTALL_PATH
+echo "../configure $CONFIG_PARAM $QT_COMPLIER $QT_INSTALL_PATH"
+../configure $CONFIG_PARAM $QT_COMPLIER $QT_INSTALL_PATH
 ----------------------------------------------------
 
-# 将脚本放到源码解压目录Qt-build并执行
-# 这步实际就是在./configure
+# 将脚本放到源码解压目录Qt-build/build并执行
+# 这步实际就是在../configure
 $ chmod +x autoConfigure.sh
 $ ./autoConfigure.sh
 
@@ -214,25 +213,26 @@ $ qmake -v
 # 如果有编译examples模块，可直接到tempDir/Qt5.5.1/examples下运行
 # 如果没有编译该模块，则运行QTest
 # 另外，静态编译只在bin目录下生成qmake，而没有make，因此实例文件只能用.pro来编译makefile
+$ make -DCROSS_COMPILE_FRAMEWORK=x64 ..
 ```
 
 # QT交叉编译环境搭建 - arm/mips
 ```sh
-# 安装cmake
-# 查看x86一节
-
-# 安装Qt5默认依赖环境
-# 查看x86一节
+# 不需要安装依赖
+# 因为build-dep qt5-default只会安装x64版本的依赖工具，这就导致aarch64在编译最快版本的时候找不到某些依赖，目前交叉编译只能编最全版本
 
 # 搭建Qt源码文件目录如下
-# 查看x86一节
+$ tree tempDir
+tempDir
+├── Qt-build       # 将Qt源码包解压至此
+└── Qt5.5.1        # 在运行configure时，设置Qt prefix，最终输出编译结果至此
 
 # 新增qmake.conf文件
-$ cp -r qtbase/mkspecs/linux-arm-gnueabi-g++ qtbase/mkspecs/linux-arm-g++
-$ vim qtbase/mkspecs/linux-arm-g++/qmake.conf
+$ cp -r qtbase/mkspecs/linux-arm-gnueabi-g++ qtbase/mkspecs/linux-aarch64-gnu-g++
+$ vim qtbase/mkspecs/linux-aarch64-gnu-g++/qmake.conf
 '
 #
-# qmake configuration for building with linux-arm-g++
+# qmake configuration for building with linux-aarch64-gnu-g++
 #
 
 MAKEFILE_GENERATOR      = UNIX
@@ -258,21 +258,50 @@ load(qt_config)
 '
 
 # 新建如下脚本 autoConfigure.sh ，用于构建Qt源码的makefile
-# 查看x86一节，只需修改如下行
-'
-QT_COMPLIER+="-platform linux-arm-g++"
-'
+-------------------- 编译最全版本 --------------------
+#! /bin/bash
+QT_INSTALL_PATH="-prefix /home/xyh/Qt5.5.1"     # Qt安装路径(自己对应修改)
+QT_COMPLIER+="-xplatform linux-aarch64-gnu-g++" # 编译器(x64架构必须写成platform.aarch64架构必须写成xplatform)
 
-# 将脚本放到源码解压目录Qt-build并执行
-# 查看x86一节
+CONFIG_PARAM+="-shared "                        # 编译动态库(动态库为'-static')
+CONFIG_PARAM+="-release "                       # 编译release
+# 选择Qt版本(开源, 商业), 并自动确认许可认证
+CONFIG_PARAM+="-opensource "                    # 编译开源版本, -commercial商业版本
+CONFIG_PARAM+="-confirm-license "               # 自动确认许可认证
+
+echo "../configure $CONFIG_PARAM $QT_COMPLIER $QT_INSTALL_PATH"
+../configure $CONFIG_PARAM $QT_COMPLIER $QT_INSTALL_PATH
+----------------------------------------------------
+
+# 将脚本放到源码解压目录Qt-build/build并执行
+# 这步实际就是在../configure
+$ chmod +x autoConfigure.sh
+$ ./autoConfigure.sh
 
 # 编译
-# 查看x86一节
+$ make -j $(grep -c ^processor /proc/cpuinfo) # 后面这句可查看当前系统最高可运行编译的核数
 
 # 安装
-# 查看x86一节
+$ make install -j $(grep -c ^processor /proc/cpuinfo)
 
+# 添加该Qt版本的环境变量(默认用root用户搭建的交叉环境)，修改/root/.bashrc，添加如下行
+----------------------------------------------------
+export QTDIR=tempDir/Qt5.5.1
+export PATH=$QTDIR/bin:$PATH
+export MANPATH=$QTDIR/doc/man:$MANPATH
+export LD_LIBRARY_PATH=$QTDIR/lib:$LD_LIBRARY_PATH
+----------------------------------------------------
 
+# 更新bashrc后查看是否已链接上Qt
+$ source /root/.bashrc
+$ qmake -v
+
+# 在安装完成后可运行实例检查安装情况
+# 如果有编译examples模块，可直接到tempDir/Qt5.5.1/examples下运行
+# 如果没有编译该模块，则运行QTest
+# 另外，静态编译只在bin目录下生成qmake，而没有make，因此实例文件只能用.pro来编译makefile
+$ make -DCROSS_COMPILE_FRAMEWORK=aarch64 ..
+# $ make -DCROSS_COMPILE_FRAMEWORK=mips64 ..
 ```
 
 # 生成root登陆用户
