@@ -220,6 +220,7 @@ $ make -DCROSS_COMPILE_FRAMEWORK=x64 ..
 ```sh
 # 不需要安装依赖
 # 因为build-dep qt5-default只会安装x64版本的依赖工具，这就导致aarch64在编译最快版本的时候找不到某些依赖，目前交叉编译只能编最全版本
+# !!注意mips必须配置好LD_LIBRARY_PATH与PATH两个环境变量，不然会找不到一些库
 
 # 搭建Qt源码文件目录如下
 $ tree tempDir
@@ -228,6 +229,7 @@ tempDir
 └── Qt5.5.1        # 在运行configure时，设置Qt prefix，最终输出编译结果至此
 
 # 新增qmake.conf文件
+-------------------- arm --------------------
 $ cp -r qtbase/mkspecs/linux-arm-gnueabi-g++ qtbase/mkspecs/linux-aarch64-gnu-g++
 $ vim qtbase/mkspecs/linux-aarch64-gnu-g++/qmake.conf
 '
@@ -256,12 +258,43 @@ QMAKE_NM                = aarch64-linux-gnu-nm -P
 QMAKE_STRIP             = aarch64-linux-gnu-strip
 load(qt_config)
 '
+-------------------- mips --------------------
+$ cp -r qtbase/mkspecs/linux-arm-gnueabi-g++ qtbase/mkspecs/linux-mips-g++
+$ vim qtbase/mkspecs/linux-mips-g++/qmake.conf
+'
+#
+# qmake configuration for building with linux-mips-g++
+#
+
+MAKEFILE_GENERATOR      = UNIX
+CONFIG                 += incremental
+QMAKE_INCREMENTAL_STYLE = sublib
+
+include(../common/linux.conf)
+include(../common/gcc-base-unix.conf)
+include(../common/g++-unix.conf)
+
+# modifications to g++.conf
+QMAKE_CC                = mips64el-loongson-linux-gcc
+QMAKE_CXX               = mips64el-loongson-linux-g++
+QMAKE_LINK              = mips64el-loongson-linux-g++
+QMAKE_LINK_SHLIB        = mips64el-loongson-linux-g++
+
+# modifications to linux.conf
+QMAKE_AR                = mips64el-loongson-linux-ar cqs
+QMAKE_OBJCOPY           = mips64el-loongson-linux-objcopy
+QMAKE_NM                = mips64el-loongson-linux-nm -P
+QMAKE_STRIP             = mips64el-loongson-linux-strip
+load(qt_config)
+'
+----------------------------------------------------
 
 # 新建如下脚本 autoConfigure.sh ，用于构建Qt源码的makefile
 -------------------- 编译最全版本 --------------------
 #! /bin/bash
 QT_INSTALL_PATH="-prefix /home/xyh/Qt5.5.1"     # Qt安装路径(自己对应修改)
 QT_COMPLIER+="-xplatform linux-aarch64-gnu-g++" # 编译器(x64架构必须写成platform.aarch64架构必须写成xplatform)
+#QT_COMPLIER+="-xplatform linux-mips-g++"
 
 CONFIG_PARAM+="-shared "                        # 编译动态库(动态库为'-static')
 CONFIG_PARAM+="-release "                       # 编译release
