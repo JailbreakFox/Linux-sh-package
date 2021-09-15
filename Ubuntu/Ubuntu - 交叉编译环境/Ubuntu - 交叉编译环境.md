@@ -67,12 +67,12 @@ export PATH='build目录下的bin文件夹路径':$PATH
 ```
 ***2、apt下载***  
 ```sh
-# 下载安装
-& sudo apt-get install gcc-4.8 g++-4.8
-
-# .bashrc末尾添加添加环境变量
-& vi /root/.bashrc
-export PATH='build目录下的bin文件夹路径':$PATH
+# 降级安装gcc-4.8
+sudo apt install gcc-4.8
+sudo apt install g++-4.8
+cd /usr/bin
+sudo ln -s gcc-4.8 gcc
+sudo ln -s g++-4.8 g++
 
 # 实例检验
 # 修改CTest项目CMakeLists.txt文件下的gcc与g++路径
