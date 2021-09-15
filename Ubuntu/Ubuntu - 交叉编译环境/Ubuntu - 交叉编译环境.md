@@ -152,7 +152,7 @@ tempDir
 -------------------- 编译最快版本 --------------------
 #! /bin/bash
 QT_INSTALL_PATH="-prefix /home/xyh/Qt5.5.1" # Qt安装路径(自己对应修改)
-QT_COMPLIER+="-platform linux-g++-64"       # 编译器(x64架构必须写成platform.aarch64架构必须写成xplatform)
+QT_COMPLIER+="-platform linux-g++-64"       # 编译器(x64架构必须写成platform.aarch64/mips架构必须写成xplatform)
 
 CONFIG_PARAM+="-shared "                    # 编译动态库(动态库为'-static')
 CONFIG_PARAM+="-release "                   # 编译release
@@ -174,7 +174,7 @@ echo "../configure $CONFIG_PARAM $QT_COMPLIER $QT_INSTALL_PATH"
 -------------------- 编译最全版本 --------------------
 #! /bin/bash
 QT_INSTALL_PATH="-prefix /home/xyh/Qt5.5.1" # Qt安装路径(自己对应修改)
-QT_COMPLIER+="-platform linux-g++-64"       # 编译器(x64架构必须写成platform.aarch64架构必须写成xplatform)
+QT_COMPLIER+="-platform linux-g++-64"       # 编译器(x64架构必须写成platform.aarch64/mips架构必须写成xplatform)
 
 CONFIG_PARAM+="-shared "                    # 编译动态库(动态库为'-static')
 CONFIG_PARAM+="-release "                   # 编译release
@@ -290,17 +290,33 @@ load(qt_config)
 ----------------------------------------------------
 
 # 新建如下脚本 autoConfigure.sh ，用于构建Qt源码的makefile
--------------------- 编译最全版本 --------------------
+-------------------- arm --------------------
 #! /bin/bash
 QT_INSTALL_PATH="-prefix /home/xyh/Qt5.5.1"     # Qt安装路径(自己对应修改)
-QT_COMPLIER+="-xplatform linux-aarch64-gnu-g++" # 编译器(x64架构必须写成platform.aarch64架构必须写成xplatform)
-#QT_COMPLIER+="-xplatform linux-mips-g++"
+QT_COMPLIER+="-xplatform linux-aarch64-gnu-g++" # 编译器(x64架构必须写成platform.aarch64/mips架构必须写成xplatform)
 
 CONFIG_PARAM+="-shared "                        # 编译动态库(动态库为'-static')
 CONFIG_PARAM+="-release "                       # 编译release
 # 选择Qt版本(开源, 商业), 并自动确认许可认证
 CONFIG_PARAM+="-opensource "                    # 编译开源版本, -commercial商业版本
 CONFIG_PARAM+="-confirm-license "               # 自动确认许可认证
+
+echo "../configure $CONFIG_PARAM $QT_COMPLIER $QT_INSTALL_PATH"
+../configure $CONFIG_PARAM $QT_COMPLIER $QT_INSTALL_PATH
+-------------------- mips --------------------
+#! /bin/bash
+QT_INSTALL_PATH="-prefix /home/xyh/Qt5.5.1"     # Qt安装路径(自己对应修改)
+QT_COMPLIER+="-xplatform linux-mips-g++"        # 编译器(x64架构必须写成platform.aarch64/mips架构必须写成xplatform)
+
+CONFIG_PARAM+="-shared "                        # 编译动态库(动态库为'-static')
+CONFIG_PARAM+="-release "                       # 编译release
+# 选择Qt版本(开源, 商业), 并自动确认许可认证
+CONFIG_PARAM+="-opensource "                    # 编译开源版本, -commercial商业版本
+CONFIG_PARAM+="-confirm-license "               # 自动确认许可认证
+CONFIG_PARAM+="-optimized-qmake -pch "
+CONFIG_PARAM+="-qt-libjpeg -qt-libpng -qt-zlib -qpa linuxfb "
+CONFIG_PARAM+="-skip qt3d -skip qtcanvas3d "
+CONFIG_PARAM+="-no-opengl -no-sse2 -no-openssl -no-cups -no-glib -no-iconv -no-pch"
 
 echo "../configure $CONFIG_PARAM $QT_COMPLIER $QT_INSTALL_PATH"
 ../configure $CONFIG_PARAM $QT_COMPLIER $QT_INSTALL_PATH
