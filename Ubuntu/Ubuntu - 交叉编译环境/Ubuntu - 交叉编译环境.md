@@ -8,17 +8,15 @@
 直接往默认源文件中加入清华源
 ```sh
 $ vi /etc/apt/source.list
-# deb cdrom:[Ubuntu 16.04 LTS _Xenial Xerus_ - Release amd64 (20160420.1)]/ xenial main restricted
-deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial main restricted
-deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-updates main restricted
-deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial universe
-deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-updates universe
-deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial multiverse
-deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-updates multiverse
-deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-backports main restricted universe multiverse
-deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-security main restricted
-deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-security universe
-deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-security multiverse
+# 默认注释了源码镜像以提高 apt update 速度，如有需要可自行取消注释
+deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial main restricted universe multiverse
+# deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial main restricted universe multiverse
+deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-updates main restricted universe multiverse
+# deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-updates main restricted universe multiverse
+deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-backports main restricted universe multiverse
+# deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-backports main restricted universe multiverse
+deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-security main restricted universe multiverse
+# deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-security main restricted universe multiverse
 ```
 更新源
 ```sh
