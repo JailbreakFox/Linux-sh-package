@@ -42,6 +42,15 @@ $ sudo chmod +x ./qt-opensource-linux-x64-5.5.1.run
 $ ./qt-opensource-linux-x64-5.5.1.run
 ```
 
+# Qt环境变量设置
+```sh
+# 添加环境变量 ~/.bashrc
+export QT_SELECT=qt5.5.1
+export QTDIR=/opt/Qt5.5.1/5.7/gcc_64
+export PATH=$QTDIR/bin:$PATH
+export MANPATH=$QTDIR/man:$MANPATH
+```
+
 # Qt版本选择工具使用
 ```sh
 # 查看qt版本
@@ -71,11 +80,18 @@ qt5
 ln -s /usr/share/qtchooser/qt5.5.1.conf /usr/lib/x86_64-linux-gnu/qtchooser/qt5.5.1.conf
 # 再次 'qtchooser -l' 即可看到已有qt5.5.1版本选择
 
-# 最后添加环境变量 ~/.bashrc
-export QT_SELECT=qt5.5.1
-export QTDIR=/opt/Qt5.5.1/5.7/gcc_64
-export PATH=$QTDIR/bin:$PATH
-export MANPATH=$QTDIR/man:$MANPATH
+# 版本选择
+-------------------- QMake --------------------
+$ export QT_SELECT=qt5.5.1
+-------------------- CMake --------------------
+# CMakeLists.txt内添加
+$ export QTDIR='Qt安装根目录路径'
+'
+set(CMAKE_PREFIX_PATH "$ENV{QTDIR}")
+或
+find_package(Qt5 HINTS "$ENV{QTDIR}" COMPONENTS Core Quick REQUIRED)
+'
+
 # 再次 'qmake -v' 可查看已经选择的qt版本
 ```
 

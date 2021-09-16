@@ -345,6 +345,50 @@ $ make -DCROSS_COMPILE_FRAMEWORK=aarch64 ..
 # $ make -DCROSS_COMPILE_FRAMEWORK=mips64 ..
 ```
 
+# Qt版本选择工具使用
+```sh
+# 查看qt版本
+& qmake -v
+
+# qmake的本质是qtchooser
+& ll /usr/bin/qmake
+lrwxrwxrwx 1 root root 9 10月 18 2019 /usr/bin/qmake -> qtchooser*
+
+# 查看qtchooser当前可选项
+$ qtchooser -l
+4
+5
+default
+qt4-aarch64-linux-gnu
+qt4
+qt5-aarch64-linux-gnu
+qt5
+
+# 添加qtchooser版本配置
+# 比如我们已经在/opt/Qt5.5.1目录下安装qt
+# 则先/usr/share/qtchooser/目录下新建文件qt5.5.1.conf
+/opt/Qt5.5.1/gcc_64/bin
+/opt/Qt5.5.1
+
+# 添加软链接
+ln -s /usr/share/qtchooser/qt5.5.1.conf /usr/lib/x86_64-linux-gnu/qtchooser/qt5.5.1.conf
+# 再次 'qtchooser -l' 即可看到已有qt5.5.1版本选择
+
+# 版本选择
+-------------------- QMake --------------------
+$ export QT_SELECT=qt5.5.1
+-------------------- CMake --------------------
+# CMakeLists.txt内添加
+$ export QTDIR='Qt安装根目录路径'
+'
+set(CMAKE_PREFIX_PATH "$ENV{QTDIR}")
+或
+find_package(Qt5 HINTS "$ENV{QTDIR}" COMPONENTS Core Quick REQUIRED)
+'
+
+# 再次 'qmake -v' 可查看已经选择的qt版本
+```
+
 # 生成root登陆用户
 ```sh
 # ===== 登陆界面添加root =====
