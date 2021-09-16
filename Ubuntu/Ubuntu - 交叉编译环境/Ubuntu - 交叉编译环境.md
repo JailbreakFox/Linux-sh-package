@@ -319,6 +319,7 @@ $ chmod +x autoConfigure.sh
 $ ./autoConfigure.sh
 
 # 编译
+# 注意，arm架构必须多核编译，不然会报错
 $ make -j $(grep -c ^processor /proc/cpuinfo) # 后面这句可查看当前系统最高可运行编译的核数
 
 # 安装
