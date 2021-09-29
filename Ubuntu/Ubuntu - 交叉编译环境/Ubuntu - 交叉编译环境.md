@@ -347,6 +347,7 @@ $ make -DCROSS_COMPILE_FRAMEWORK=aarch64 ..
 
 # Qt版本选择工具使用
 ```sh
+-------------------- QMake --------------------
 # 查看qt版本
 & qmake -v
 
@@ -375,8 +376,10 @@ ln -s /usr/share/qtchooser/qt5.5.1.conf /usr/lib/x86_64-linux-gnu/qtchooser/qt5.
 # 再次 'qtchooser -l' 即可看到已有qt5.5.1版本选择
 
 # 版本选择
--------------------- QMake --------------------
 $ export QT_SELECT=qt5.5.1
+
+# 再次 'qmake -v' 可查看已经选择的qt版本
+
 -------------------- CMake --------------------
 # CMakeLists.txt内添加
 $ export QTDIR='Qt安装根目录路径'
