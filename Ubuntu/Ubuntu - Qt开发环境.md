@@ -111,10 +111,33 @@ linuxdeployqt 5 (commit 37631e5), build 631 built on 2019-01-25 22:47:58 UTC
 # 将已经编译好的exe文件单独放到某目录下
 # 注意必须要加上'-appimage'
 $ linuxdeployqt '可执行程序' -appimage
-
+```  
+接下来分析下生成的文件结构:  
+```sh
 # 注意该工具会修改可执行程序的RPATH
 # 我们只需要生成后的 ./lib 文件下的所有库文件即可
+
+# 生成的文件结构
+QtLibs
+├── lib     # 存放所有运行时库
+├── plugins # 存放所有需要的插件
+└── qt.conf # *配置文件
 ```
+qt.conf文件详解:
+
+| 字段        | 默认值                              | 释义                                                         |
+| ------------- | -------------------------------------- | -------------------------------------------------------------- |
+| Prefix        | QCoreApplication::applicationDirPath() | 绝对路径，其他的设定都是相对于Prefix的相对路径，使用默认值即可 |
+| Documentation | doc                                    | 文档                                                         |
+| Headers       | include                                | 头文件                                                      |
+| Libraries     | lib                                    | 库文件                                                      |
+| Binaries      | bin                                    | 二进制文件                                                |
+| Plugins       | plugins                                | 插件                                                         |
+| Data          | .                                      |                                                                |
+| Translations  | translations                           |                                                                |
+| Settings      | .                                      |                                                                |
+| Examples      | .                                      |                                                                |
+| Demos         | .                                      |                                                                |
 
 # 生成root登陆用户
 ```sh

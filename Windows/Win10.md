@@ -16,6 +16,9 @@ ZF3R0-FHED2-M80TY-8QYGC-NPKYF
 # Dependencies
 https://github.com/lucasg/Dependencies
 查看可执行文件的依赖库  
+
+# sqlite查看器
+http://www.sqlitebrowser.org/dl/
 ```
 
 # 开发环境搭建
