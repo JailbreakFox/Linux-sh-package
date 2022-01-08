@@ -207,6 +207,9 @@ python -m pip install scons
 # 安装visual studio 2017
 # 安装时勾选'使用C++的游戏开发'与'使用C++的Linux开发'
 
+# 下载源码，并切换到稳定版本，比如 3.4.2-stable
+# https://gitee.com/mirrors/godot
+
 # 编译Godot
 scons p=windows vsproj=yes
 ```
