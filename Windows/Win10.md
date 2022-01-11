@@ -120,6 +120,21 @@ http://www.sqlitebrowser.org/dl/
 # 另外勾选Auto Guess Encoding
 ```
 
+# CMake与MSVC命令行编译
+```sh
+# 添加CMake的bin目录环境变量
+
+# 打开Visual Studio命令提示进程，执行以下命令
+rd /s/q build # 删除build文件夹
+mkdir build
+cd build
+cmake -G "NMake Makefiles" ..
+nmake clean
+nmake '指定模块名'
+# 或者
+nmake
+```
+
 # Qt打包工具的使用
 ```sh
 # 将已经编译好的exe文件单独放到某目录下
