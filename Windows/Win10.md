@@ -87,6 +87,7 @@ http://www.sqlitebrowser.org/dl/
 # 系统环境变量可以添加也可以不添
 #          ...\Qt5.12.10\5.12.0\msvc2015_64\bin
 #          ...\Qt5.12.10\5.12.0\msvc2015_64\lib\cmake
+# 由于CDB调试打开占用时间很长，如果是在离线的条件下开发的话，清除工具-选项-调试器-CDB Paths 中的所有Symbol Paths
 # ！！！至此，Qtcreator的开发环境搭建完成（可以使用CMakeList.txt），且VS也能开始使用.pro去开发qt
 # ----------        VisualStudio作为IDE            ---------
 # 如果想用CMakeList.txt开发，则需在VS2017以上版本，安装过程中选择 '开发C++桌面' 与 'CMake工具'
