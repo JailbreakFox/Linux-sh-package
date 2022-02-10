@@ -17,8 +17,14 @@ ZF3R0-FHED2-M80TY-8QYGC-NPKYF
 https://github.com/lucasg/Dependencies
 查看可执行文件的依赖库  
 
-# sqlite查看器
+# sqlite 查看器
 http://www.sqlitebrowser.org/dl/
+
+# ScreenToGif 录屏软件
+https://www.screentogif.com/
+
+# 7z 压缩软件
+https://www.7-zip.org/
 ```
 
 # 开发环境搭建
@@ -95,7 +101,8 @@ http://www.sqlitebrowser.org/dl/
 #          1. 安装qt-vsaddin-msvc，方法在上面
 #          2. 打开VS后，点击 'Qt VS Tools' - 'Qt Options' -'Add'，添加qtcreator.exe的路径
 ```
-====== VSCode + Qt + MinGW开发环境 =====
+
+# VSCode + MinGW / MSVC开发环境
 ```sh
 # 官网安装 https://code.visualstudio.com/
 # 如果安装速度较慢，将下载连接
@@ -104,16 +111,22 @@ http://www.sqlitebrowser.org/dl/
 
 # 安装必要插件
 # 1. chinese(simplified)
-# 2. C++ 
+# 2. C++(插件名为 cpptools-win32.vsix 附带扩展插件)
 # 3. CMake Tools
 # 4. CMake
 # 5. Remote Development
+# 6. Git Graph
+# 7. favorites(收藏功能)
 
 # 安装编译器 + Qt + CMake
-# MinGW / MSVC版本配套: qt-opensource-windows-x86-5.12.10及其自带MinGW / MSVC编译器 + CMake 3.14(3.13以上版本，且3.20不可用)
+# 注意
+	1. 如果已安装CMake且有环境变量，则CMake插件将加载该已安装CMake(未安装的情况下使用CMake插件自带CMake，版本不定)
+# MinGW / MSVC版本配套:
+	1. 如果使用VSCode + MinGW则无需安装VS(直接安装MinGW的编译器即可);如果使用MSVC则需先安装VS
+	2. CMake 3.14(3.13以上版本，且3.20不可用)
 
 # 链接编译器
-# 添加环境变量后，打开项目，并点击最下方一栏cmake里的编译工具选项，选择[SCan for kits]，就能加载新编译器
+# 添加环境变量后，打开项目，并点击最下方一栏cmake里的编译工具选项，选择[SCan for kits]，就能加载新编译器(或者直接选择已被搜索到的编译工具)
 
 # 修改编码格式(MinGW环境使用默认UTF-8编码文件，文件行尾推荐使用Linux的LF)
 # MSVC环境需要修改编码格式:
@@ -228,4 +241,16 @@ python -m pip install scons
 
 # 编译Godot
 scons p=windows vsproj=yes
+```
+
+# 远程桌面控制
+```sh
+# 安装MultiDesk
+
+# 打开被控机器的远程桌面设置
+# 右键我的电脑-属性-远程属性-远程-远程桌面
+
+# 关闭防火墙
+
+# 打开MultiDesk添加远程桌面IP并连接
 ```
