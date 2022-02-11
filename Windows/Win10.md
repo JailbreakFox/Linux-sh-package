@@ -132,6 +132,22 @@ https://www.7-zip.org/
 # MSVC环境需要修改编码格式:
 # File(文件)->Preferences(首选项)->Usersettings(设置)，搜索encoding ，然后修改为GB2312
 # 另外勾选Auto Guess Encoding
+
+# ===== VSCode编译Qt程序 =====
+# 开发Qt程序仍旧推荐使用QtCreator，但是如果只是要编译运行Qt，需要做如下操作
+# ----- MSVC编译器 -----
+# 注意，MSVC没有单独编译器下载，需要先安装VS
+	1.安装具有MSVC开发工具(用于qmake链接编译器)的Qt版本，比如上面使用过的5.12.0
+	2.添加环境变量，目的是让vscode找到Qt位置
+		1) 可以添加全局环境变量 ...\Qt5.12.10\5.12.0\msvc2015_64\lib\cmake
+		2) 或者可以使用CMakeLists.txt配置寻找Qt的路径
+		
+# ----- MinGW编译器 -----
+# 注意，MinGW编译器一般Qt安装程序内置可以选择
+	1.找到具有MinGW开发工具与编译器的Qt版本，比如上面使用过的5.12.0
+	2.添加环境变量，目的是让vscode找到Qt位置
+		1) 可以添加全局环境变量 ...\Qt5.12.10\5.12.0\msvc2015_64\lib\cmake
+		2) 或者可以使用CMakeLists.txt配置寻找Qt的路径
 ```
 
 # CMake与MSVC命令行编译
