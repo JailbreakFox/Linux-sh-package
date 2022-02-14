@@ -117,6 +117,8 @@ https://www.7-zip.org/
 # 5. Remote Development
 # 6. Git Graph
 # 7. favorites(收藏功能)
+# 8. Markdown All in One
+# 9. Gitbook kit
 
 # 安装编译器 + Qt + CMake
 # 注意
@@ -221,6 +223,31 @@ gitbook build
 
 # 根据SUMMARY.md的目录生成md文档
 gitbook init
+```
+
+# VSCode + GitBook环境搭建
+```sh
+# 如果不需要生成静态网页，则可不必安装上述GitBook框架。更简单，推荐
+
+# 安装VSCode(方法在上面)
+# 安装以下插件
+#	Markdown All in One
+#	Gitbook kit
+	
+# 新建最简单的笔记本结构
+|-- SUMMARY.md     # 目录
+|-- README.md      # 引言
+|-- CHAPTER_1      # 第一章文件夹
+| |-- CHAPTER_1.md # 第一章
+
+# SUMMARY.md为目录，其大致内容如下
+`
+# Summary
+* [Foreword](README.md)
+
+## CHAPTER_1
+* [CHAPTER_1.XXX](CHAPTER_1/CHAPTER_1.md)
+`
 ```
 
 # 科学上网
