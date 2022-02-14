@@ -242,11 +242,11 @@ gitbook init
 
 # SUMMARY.md为目录，其大致内容如下
 `
-# Summary
-* [Foreword](README.md)
+# 书名
+* [引言](README.md)
 
 ## CHAPTER_1
-* [CHAPTER_1.XXX](CHAPTER_1/CHAPTER_1.md)
+* [第一章 XXX](CHAPTER_1/CHAPTER_1.md)
 `
 ```
 
