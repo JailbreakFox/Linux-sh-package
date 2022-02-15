@@ -118,7 +118,8 @@ https://www.7-zip.org/
 # 6. Git Graph
 # 7. favorites(收藏功能)
 # 8. Markdown All in One
-# 9. Gitbook kit
+# 9. Markdown Preview Enhanced
+# 10. Gitbook kit
 
 # 安装编译器 + Qt + CMake
 # 注意
