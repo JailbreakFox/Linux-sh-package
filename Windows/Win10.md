@@ -120,6 +120,7 @@ https://www.7-zip.org/
 # 8. Markdown All in One
 # 9. Markdown Preview Enhanced
 # 10. Gitbook kit
+# 11. Python
 
 # 安装编译器 + Qt + CMake
 # 注意
