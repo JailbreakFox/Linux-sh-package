@@ -153,6 +153,11 @@ https://www.7-zip.org/
 	2.添加环境变量，目的是让vscode找到Qt位置
 		1) 可以添加全局环境变量 ...\Qt5.12.10\5.12.0\msvc2015_64\lib\cmake
 		2) 或者可以使用CMakeLists.txt配置寻找Qt的路径
+		
+# 在settings.json文件中添加默认配置
+{
+	"cmake.buildDirectory": "${workspaceFolder}/build_trash"
+}
 ```
 
 # CMake与MSVC命令行编译
