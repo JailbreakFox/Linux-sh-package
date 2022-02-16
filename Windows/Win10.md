@@ -121,6 +121,7 @@ https://www.7-zip.org/
 # 9. Markdown Preview Enhanced
 # 10. Gitbook kit
 # 11. Python
+# 12. Output Colorizer
 
 # 安装编译器 + Qt + CMake
 # 注意
