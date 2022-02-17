@@ -304,7 +304,9 @@ gitbook init
 		conda create --name pytorch python=3.6
 	3.激活环境
 		conda activate pytorch
-	4.执行从pytorch官网获得的安装命令
+	4.执行从pytorch官网获得的安装pytorch命令
+	5.安装ipykernel(用于分块运行python代码)
+		conda install ipykernel
 	
 # 安装VSCode(方法在上面)
 	1.安装Python插件
