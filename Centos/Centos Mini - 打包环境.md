@@ -2,7 +2,7 @@
 http://mirrors.aliyun.com/centos/7/isos/x86_64/
 
 # 安装桌面环境
-由于该版本是最小系统，因此只有终端。需要先安装桌面环境
+由于该版本是最小系统，因此只有终端。如果要安装界面安装桌面环境，则执行以下
 ```sh
 # 安装X windows - 桌面控制功能
 yum upgrade
@@ -25,11 +25,14 @@ vi /etc/sysconfig/network-scripts/'ifcfg- 加上硬件'
 # 修改配置，一般主要修改以下几个配置
 BOOTPROTO=static  #改为静态IP
 ONBOOT=yes #开机自启
-IPADDR=192.168.68.130  #ip不能超出起止IP，查看起止IP请看下文
-NETMASK=255.255.255.0  # 子网掩码
-GATEWAY=192.168.68.1  # 网关
-DNS1=8.8.8.8
-DNS2=?.?.?.?  # 可能需要配置
+#IPADDR=192.168.68.130 #ip不能超出起止IP，查看起止IP请看下文
+#NETMASK=255.255.255.0 # 子网掩码
+#GATEWAY=192.168.68.1 # 网关
+DNS1=8.8.8.8 # 如果没有DNS2，将DNS1改为DNS
+DNS2=?.?.?.? # 如果物理机上有，则最好需要配置
+
+# 重启network服务
+$ systemctl restart network
 ```
 
 # 配置源
