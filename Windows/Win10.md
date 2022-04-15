@@ -157,7 +157,13 @@ https://www.7-zip.org/
 		
 # 在settings.json文件中添加默认配置
 {
+	// 设置build中间文件的路径
 	"cmake.buildDirectory": "${workspaceFolder}/build_trash"
+	
+    // 设置Google的代码格式(快捷键 Shift + Alt + F)
+    // 格式名可选：LLVM, Google, Chromium, Mozilla, WebKit
+    "C_Cpp.clang_format_fallbackStyle": "{ BasedOnStyle: Google, UseTab: Never, IndentWidth: 4, TabWidth: 4}",
+    "C_Cpp.clang_format_style": "{ BasedOnStyle: Google, UseTab: Never, IndentWidth: 4, TabWidth: 4}"
 }
 ```
 
