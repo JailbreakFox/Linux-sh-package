@@ -36,7 +36,20 @@ DNS2=?.?.?.? # 如果物理机上有，则最好需要配置
 $ systemctl restart network
 ```
 
-# 配置源
+# 配置源 - centos6
+```sh
+# 关闭fastestmirror, 修改参数
+vi /etc/yum/pluginconf.d/fastestmirror.conf
+enable=0
+
+# 将原来的源备份
+mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.bak
+
+# 替换为阿里云Vault镜像
+wget -O /etc/yum.repos.d/CentOS-Base.repo https://static.lty.fun/%E5%85%B6%E4%BB%96%E8%B5%84%E6%BA%90/SourcesList/Centos-6-Vault-Aliyun.repo
+```
+
+# 配置源 - centos7
 ```sh
 # 直接往默认源文件中加入阿里云的源
 curl -o /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo
