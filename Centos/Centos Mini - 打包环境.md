@@ -23,11 +23,11 @@ ip addr
 vi /etc/sysconfig/network-scripts/'ifcfg- 加上硬件'
 
 # 修改配置，一般主要修改以下几个配置
-BOOTPROTO=static  #改为静态IP
+# BOOTPROTO=static  #改为静态IP
 ONBOOT=yes #开机自启
-#IPADDR=192.168.68.130 #ip不能超出起止IP，查看起止IP请看下文
-#NETMASK=255.255.255.0 # 子网掩码
-#GATEWAY=192.168.68.1 # 网关
+# IPADDR=192.168.68.130 #ip不能超出起止IP，查看起止IP请看下文
+# NETMASK=255.255.255.0 # 子网掩码
+# GATEWAY=192.168.68.1 # 网关
 DNS1=8.8.8.8 # 如果没有DNS2，将DNS1改为DNS
 DNS2=?.?.?.? # 如果物理机上有，则最好需要配置
 
