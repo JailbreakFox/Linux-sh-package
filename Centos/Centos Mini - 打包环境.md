@@ -32,7 +32,7 @@ DNS1=8.8.8.8 # 如果没有DNS2，将DNS1改为DNS
 DNS2=?.?.?.? # 如果物理机上有，则最好需要配置
 
 # 重启network服务
-$ systemctl restart network
+$ systemctl restart network.service
 ```
 
 # 配置源 - centos6
