@@ -1,6 +1,7 @@
 # 系统镜像下载
 注意，低版本的centos7不支持docker的某些版本
 http://mirrors.aliyun.com/centos/7.9.2009/isos/x86_64/
+https://mirrors.bfsu.edu.cn/centos-altarch/7.9.2009/isos/i386/
 
 # 安装桌面环境
 由于该版本是最小系统，因此只有终端。如果要安装界面安装桌面环境，则执行以下
