@@ -157,10 +157,11 @@ docker -v >/dev/null 2>&1
 $ vi /etc/docker/daemon.json
 `
 {"registry-mirrors":["https://reg-mirror.qiniu.com/"]}
+`
 # 替换成功后重启服务
 $ systemctl daemon-reload
 $ systemctl restart docker
-`
+
 
 # 关闭SELINUX部分功能，否则有可能无法运行容器
 $ vi /etc/selinux/config
