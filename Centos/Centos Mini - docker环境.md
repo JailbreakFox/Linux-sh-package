@@ -169,3 +169,12 @@ $ vi /etc/selinux/config
 SELINUX=disabled
 `
 ```
+
+# docker常用镜像
+```sh
+# pytorch开发环境
+$ docker pull pytorch/pytorch:1.4-cuda10.1-cudnn7-devel
+
+# 自用centos基础镜像
+$ docker pull purebean/centos:base
+```
