@@ -60,7 +60,7 @@ $ sudo apt install python3-argcomplete
 # 终端一:
 $ ros2 run demo_nodes_cpp talker
 # 终端二:
-$ 
+$ ros2 run demo_nodes_cpp listener
 ```
 
 # 配置C/C++开发环境
