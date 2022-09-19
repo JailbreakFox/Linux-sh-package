@@ -25,6 +25,12 @@ https://www.screentogif.com/
 
 # 7z 压缩软件
 https://www.7-zip.org/
+
+# SpaceSniffer 磁盘清理软件
+http://www.uderzo.it/main_products/space_sniffer/download_alt.html
+
+# WinSCP 文件传输
+https://winscp.net/eng/index.php
 ```
 
 # Hexo博客环境搭建
