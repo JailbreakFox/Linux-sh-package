@@ -76,6 +76,29 @@ https://jingyan.baidu.com/article/37bce2bec1a11d5002f3a28b.html
 #          2. 打开VS后，点击 'Qt VS Tools' - 'Qt Options' -'Add'，添加qtcreator.exe的路径
 ```
 
+# Qt预编译版本
+```sh
+# qt-5.15.6已编译版本(x86 msvc2017编译)
+# 已保存在硬盘
+
+# qtcreator-4.9.2
+# https://mirrors.tuna.tsinghua.edu.cn/qt/archive/qtcreator/4.9/4.9.2/installer_source/windows_msvc2017_x86/
+# 下载组件: qtcreator.7z       qtcreator已编译版本(已保存在硬盘)
+#           qtcreatorcbdext.7z 用于CDB调试debug(已保存在硬盘)
+
+# CMake
+
+# VisualStudio2017
+
+# X86 Debuggers And Tools-x86_en-us.msi
+# CDB的安装包
+
+1.添加 qtcreator -> 工具 -> 选项 -> Qt Versions : XXX\bin\qmake.exe
+2.添加 qtcreator -> 工具 -> 选项 -> 编译器 : XXX\VC\Auxiliary\Build\vcvarsall.bat x86
+3.添加 qtcreator -> 工具 -> 选项 -> Debuggers : C:\Program Files (x86)\Windows Kits\10\Debuggers\x86\cdb.exe
+4.添加 qtcreator -> 工具 -> 选项 -> CMake : XXX\bin\cmake.exe
+```
+
 # Qt打包工具的使用
 ```sh
 # 将已经编译好的exe文件单独放到某目录下
