@@ -20,6 +20,6 @@ python -m pip install scons
 # 下载源码，并切换到稳定版本，比如 3.4.2-stable
 # https://gitee.com/mirrors/godot
 
-# 编译Godot
+# 编译Godot，在bin目录下将生成godot，在根目录下生成.sln工程
 scons p=windows vsproj=yes
 ```
