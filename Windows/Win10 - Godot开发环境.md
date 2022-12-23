@@ -42,8 +42,7 @@ modules                  # 模块放在 XXX/modules 下
    │  register_types.cpp # *c++类的 注册/注销 函数入口
    │  register_types.h
    │  SCsub              # *scons的编译脚本
-   │  test.cpp           # 自定义c++类
-   └─ test.h
+   └─ test.hpp           # 自定义c++类
    
 # 编译Godot(可以多核编译 -j4)
 # 自定义C++模块的使用需要源码编译Godot(由于scons是增量编译，每次修改模块后再执行以下命令即可)
@@ -70,7 +69,7 @@ void unregister_test_types();
 /* register_types.cpp */
 #include "register_types.h"
 #include "core/class_db.h"
-#include "test.h"
+#include "test.hpp"
 
 /* 注册 */
 void register_test_types()
@@ -82,4 +81,38 @@ void register_test_types()
 void unregister_summator_types()
 {
 }
+```
+
+```sh
+# SCsub
+Import('env')
+module_env = env.Clone()
+module_env.Append(CPPPATH=["./include"])
+src_list = ["summator.cpp", "other.cpp", "etc.cpp"]
+module_env.add_source_files(env.modules_sources, src_list)
+
+module_env.Append(CCFLAGS=['-O2']) # Flags for C and C++ code
+module_env.Append(CXXFLAGS=['-std=c++11']) # Flags for C++ code only
+```
+
+```c++
+#ifndef TEST_HPP
+#define TEST_HPP
+
+#include "core/reference.h"
+
+class Test :public Reference // 必须继承
+{
+    GDCLASS(Test, Reference); // 必加
+protected:
+     // 必加
+    static void _bind_methods()
+    {
+        ClassDB::bind_method(D_METHOD("Init"), &Test::Init);
+    }
+public:
+    int Init() { return 10; }
+};
+
+#endif //!TEST_HPP
 ```
