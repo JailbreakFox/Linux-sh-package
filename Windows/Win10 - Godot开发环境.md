@@ -63,7 +63,7 @@ def configure(env):
 /* register_types.h */
 void register_test_types();
 void unregister_test_types();
-/* test需要修改为自定义c++类名 */
+/* test需要修改为文件名 */
 ```
 
 ```c++
