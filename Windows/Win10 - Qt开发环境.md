@@ -78,20 +78,18 @@ https://jingyan.baidu.com/article/37bce2bec1a11d5002f3a28b.html
 
 # Qt预编译版本
 ```sh
-# qt-5.15.6已编译版本(x86 msvc2017编译)
-# 已保存在硬盘
+# qt-5.15.6已编译版本(x86 msvc2017编译   已保存在硬盘)
 
 # qtcreator-4.9.2
 # https://mirrors.tuna.tsinghua.edu.cn/qt/archive/qtcreator/4.9/4.9.2/installer_source/windows_msvc2017_x86/
-# 下载组件: qtcreator.7z       qtcreator已编译版本(已保存在硬盘)
-#           qtcreatorcbdext.7z 用于CDB调试debug(已保存在硬盘)
+# 下载组件: qtcreator.7z        qtcreator已编译版本(已保存在硬盘)
+#          qtcreatorcbdext.7z 用于CDB调试debug(已保存在硬盘)
 
 # CMake
 
-# VisualStudio2017
+# Visual Studio 2017
 
-# X86 Debuggers And Tools-x86_en-us.msi
-# CDB的安装包
+# CDB的安装包  WindowsSDK/sdksetup.exe 只需要勾选Debuggers x86
 
 1.添加 qtcreator -> 工具 -> 选项 -> Qt Versions : XXX\bin\qmake.exe
 2.添加 qtcreator -> 工具 -> 选项 -> 编译器 : XXX\VC\Auxiliary\Build\vcvarsall.bat x86
