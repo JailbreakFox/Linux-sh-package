@@ -31,6 +31,9 @@ http://www.uderzo.it/main_products/space_sniffer/download_alt.html
 
 # WinSCP 文件传输
 https://winscp.net/eng/index.php
+
+# BoostNote 开源云笔记
+https://github.com/BoostIO/BoostNote-App
 ```
 
 # Hexo博客环境搭建
