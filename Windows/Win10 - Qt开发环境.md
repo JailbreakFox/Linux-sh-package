@@ -95,6 +95,7 @@ https://jingyan.baidu.com/article/37bce2bec1a11d5002f3a28b.html
 2.添加 qtcreator -> 工具 -> 选项 -> 编译器 : XXX\VC\Auxiliary\Build\vcvarsall.bat x86
 3.添加 qtcreator -> 工具 -> 选项 -> Debuggers : C:\Program Files (x86)\Windows Kits\10\Debuggers\x86\cdb.exe
 4.添加 qtcreator -> 工具 -> 选项 -> CMake : XXX\bin\cmake.exe
+5.工具 -> 选项 -> 文本编辑器 -> 行为 -> 制表符策略(混合) 制表符尺寸(4) 对其连续的行(用一般的缩进对齐)
 ```
 
 # Qt打包工具的使用
