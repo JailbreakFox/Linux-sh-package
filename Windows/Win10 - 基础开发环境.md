@@ -33,7 +33,7 @@ http://www.uderzo.it/main_products/space_sniffer/download_alt.html
 https://winscp.net/eng/index.php
 
 # BoostNote 开源云笔记
-https://github.com/BoostIO/BoostNote-App
+https://github.com/BoostIO/boost-releases/releases/
 ```
 
 # Hexo博客环境搭建
