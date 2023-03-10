@@ -21,7 +21,7 @@ https://github.com/lucasg/Dependencies
 http://www.sqlitebrowser.org/dl/
 
 # ScreenToGif 录屏软件
-https://www.screentogif.com/
+https://github.com/NickeManarin/ScreenToGif
 
 # 7z 压缩软件
 https://www.7-zip.org/
@@ -34,6 +34,12 @@ https://winscp.net/eng/index.php
 
 # BoostNote 开源云笔记
 https://github.com/BoostIO/boost-releases/releases/
+
+# shotcut 视频剪辑软件
+https://github.com/mltframework/shotcut
+
+# OBS 录屏软件
+https://obsproject.com/
 ```
 
 # Hexo博客环境搭建
