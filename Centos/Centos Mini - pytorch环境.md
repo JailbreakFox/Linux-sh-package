@@ -55,7 +55,7 @@ wget -O /etc/yum.repos.d/CentOS-Base.repo https://static.lty.fun/%E5%85%B6%E4%BB
 curl -o /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo
 ```
 
-# pytorch环境搭建
+# Pytorch环境搭建
 ```sh
 # 安装Anaconda(用于控制python、pytorch及其他依赖库的版本)
 # https://www.anaconda.com/download/#linux
@@ -90,14 +90,14 @@ show_channel_urls: true
 # 注意CUDA版本，如果查版本嫌麻烦直接使用CPU版本(速度慢)
 	1.更换源
 	2.新建环境名
-		conda create --name pytorch python=3.6
+		conda create --name pytorch python=3.8.5
 	3.启动Anaconda
 		conda init bash
 		source activate # 切换到base环境
 	4.激活环境
 		conda activate pytorch
-	5.1执行从pytorch官网获得的安装pytorch命令
-	5.2或者直接运行以下命令安装
+	5.1*执行从pytorch官网获得的安装pytorch命令(安装在当前anaconda环境 为了保持环境纯净还是使用此方式)
+	5.2或者直接运行以下命令安装(安装在anaconda3/pkgs目录下 可被其他anaconda环境使用)
 		conda install pytorch
 ```
 
