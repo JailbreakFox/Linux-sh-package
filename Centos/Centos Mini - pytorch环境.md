@@ -122,4 +122,6 @@ show_channel_urls: true
 8.在当前环境安装/卸载指定包
 	conda install <package_name>
 	conda remove <package_name>
+9.升级Anaconda
+	conda update --all
 ```
