@@ -1,5 +1,5 @@
 # 简介
-Qt程序可以使用低版本Qt进行编译(详见Ubuntu交叉编译环境)，而**运行时库**最好使用centos7生成的高版本Qt，原因如下:  
+Ubuntu目前编译无法生成libqxcb.so导致无法生成运行时库(详见Ubuntu交叉编译环境)，而**为了生成运行时库**最好使用centos7生成的高版本Qt，原因如下:  
 
 - Ubuntu交叉编译环境的CXXABI偏高，有时候不支持低版本GLIBC系统
 - 运行时库使用的Qt版本可以选择高一些，这样生成的运行时库能带动低版本Qt编译的程序
@@ -92,5 +92,22 @@ tempDir
 ***2、自动生成***  
 https://github.com/probonopd/linuxdeployqt
 ```sh
-$ linuxdeployqt '二进制路径' -appimage
+# 将Qt二进制文件放入一个单独文件夹，然后使用自己编译的linuxdeployqt执行
+$ ./linuxdeployqt '二进制路径' -appimage
+```
+
+# CMake-Qt技巧
+```sh
+# 一些特殊的关于Qt变量可以从xxx/lib/cmake/Qt5/Qt5Config.cmake查看
+# _qt5_install_prefix Qt 安装位置
+# Qt5Core_VERSION_STRING Qt版本号
+
+# HINTS代表优先从QTDIR变量路径寻找QT
+find_package(Qt5 HINTS "${QTDIR}" COMPONENTS Core Gui Widgets Sql REQUIRED)
+
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTOUIC ON)
+set(CMAKE_AUTORCC ON)
+
+target_link_libraries(${PROJECT_NAME} Qt5::Core Qt5::Gui Qt5::Widgets)
 ```

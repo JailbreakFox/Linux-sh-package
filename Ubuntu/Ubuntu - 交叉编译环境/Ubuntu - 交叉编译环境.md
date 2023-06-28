@@ -384,16 +384,17 @@ tempDir
 QT_INSTALL_PATH="-prefix /home/xyh/Qt5.5.1" # Qt安装路径(自己对应修改)
 QT_COMPLIER+="-platform linux-g++-64"       # 编译器(x64架构必须写成platform.aarch64/mips架构必须写成xplatform)
 
+CONFIG_PARAM+="-shared "                    # 编译动态库(动态库为'-static')
 CONFIG_PARAM+="-release "                   # 编译release
-CONFIG_PARAM+="-shared "                    # 编译动态库(静态库为'-static')
-CONFIG_PARAM+="-accessibility "             # 启用辅助功能支持
-CONFIG_PARAM+="-qpa xcb "                   # 选择默认的 QPA 后端
+CONFIG_PARAM+="-make libs "
+CONFIG_PARAM+="-nomake tools "              # 不编译tools
+CONFIG_PARAM+="-nomake examples "           # 不编译examples
+CONFIG_PARAM+="-nomake tests "              # 不编译tests
 
-CONFIG_PARAM+="-nomake examples "           # 不编译示例
-CONFIG_PARAM+="-nomake tests "              # 不编译测试代码
-
-CONFIG_PARAM+="-skip qtwebengine "
-CONFIG_PARAM+="-qt-zlib -qt-pcre -qt-libpng -qt-libjpeg -qt-freetype -qt-xcb -qt-harfbuzz "
+CONFIG_PARAM+="-skip qtwebengine -no-qml-debug "
+CONFIG_PARAM+="-qt-zlib -qt-pcre -qt-libpng -qt-libjpeg -qt-freetype -qt-xcb -qt-harfbuzz -opengl desktop "
+CONFIG_PARAM+="-dbus-linked -openssl-linked -feature-freetype -fontconfig "
+CONFIG_PARAM+="-sysconfdir /etc/xdg -no-rpath -strip "
 # 选择Qt版本(开源, 商业), 并自动确认许可认证
 CONFIG_PARAM+="-opensource "                # 编译开源版本, -commercial商业版本
 CONFIG_PARAM+="-confirm-license "           # 自动确认许可认证
@@ -655,7 +656,24 @@ tempDir
 ***2、自动生成***  
 https://github.com/probonopd/linuxdeployqt
 ```sh
+# 将Qt二进制文件放入一个单独文件夹，然后使用自己编译的linuxdeployqt执行
 $ linuxdeployqt '二进制路径' -appimage
+```
+
+# CMake-Qt技巧
+```sh
+# 一些特殊的关于Qt变量可以从xxx/lib/cmake/Qt5/Qt5Config.cmake查看
+# _qt5_install_prefix Qt 安装位置
+# Qt5Core_VERSION_STRING Qt版本号
+
+# HINTS代表优先从QTDIR变量路径寻找QT
+find_package(Qt5 HINTS "${QTDIR}" COMPONENTS Core Gui Widgets Sql REQUIRED)
+
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTOUIC ON)
+set(CMAKE_AUTORCC ON)
+
+target_link_libraries(${PROJECT_NAME} Qt5::Core Qt5::Gui Qt5::Widgets)
 ```
 
 # 生成root登陆用户
