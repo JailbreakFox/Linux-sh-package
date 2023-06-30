@@ -652,6 +652,10 @@ tempDir
 ├── qt.conf       # qt配置文件
 ├── plugins      # qt插件
 └── lib               # qt依赖库
+```sh
+# 还有一点需要注意的是，Qt二进制必须添加rpath到lib目录下
+$ chrpath -r 'rpath路径' '二进制路径'
+```
 
 ***2、自动生成***  
 https://github.com/probonopd/linuxdeployqt
