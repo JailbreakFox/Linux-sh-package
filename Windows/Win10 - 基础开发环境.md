@@ -40,6 +40,9 @@ https://github.com/mltframework/shotcut
 
 # OBS 录屏软件
 https://obsproject.com/
+
+# ssh工具
+https://github.com/kingToolbox/WindTerm
 ```
 
 # Hexo博客环境搭建
