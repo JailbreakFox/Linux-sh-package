@@ -98,6 +98,22 @@ https://jingyan.baidu.com/article/37bce2bec1a11d5002f3a28b.html
 5.工具 -> 选项 -> 文本编辑器 -> 行为 -> 制表符策略(混合) 制表符尺寸(4) 对其连续的行(用一般的缩进对齐)
 ```
 
+# Qt源码编译
+```sh
+# 下载源码
+https://download.qt.io/archive/qt/5.15/5.15.6/single/
+
+# 安装python
+https://www.python.org/downloads/windows/
+
+# 生成makefile
+$ configure -prefix "D:\Qt-5.15.6-build" -shared -release -nomake examples -nomake tests -skip qtwebengine -skip qtspeech -no-qml-debug -opensource -confirm-license -platform win32-msvc -mp
+
+# 开始编译
+$ nmake
+$ nmake install
+```
+
 # Qt打包工具的使用
 ```sh
 # 将已经编译好的exe文件单独放到某目录下
