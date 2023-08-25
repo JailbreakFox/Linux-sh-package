@@ -107,7 +107,7 @@ https://download.qt.io/archive/qt/5.15/5.15.6/single/
 https://www.python.org/downloads/windows/
 
 # 生成makefile
-$ configure -prefix "D:\Qt-5.15.6-build" -shared -release -nomake examples -nomake tests -skip qtwebengine -skip qtspeech -no-qml-debug -opensource -confirm-license -platform win32-msvc -mp
+$ configure -prefix "D:\Qt-5.15.6-build" -shared -release -debug -nomake examples -nomake tests -skip qtwebengine -skip qtspeech -no-qml-debug -opensource -confirm-license -platform win32-msvc -mp
 
 # 开始编译
 $ nmake
