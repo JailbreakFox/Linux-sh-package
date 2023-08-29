@@ -36,6 +36,7 @@ $ yum install mesa-libGL-devel libxkbcommon-devel
 # $ yum install qt5-qtbase.x86_64
 
 # 新建如下脚本 autoConfigure.sh ，用于构建Qt源码的makefile
+-------------------- 编译最快版本 --------------------
 #! /bin/bash
 QT_INSTALL_PATH="-prefix /Qt-5.12.12-x64"   # Qt安装路径(自己对应修改)
 QT_COMPLIER+="-platform linux-g++-64"       # 编译器(x64架构必须写成platform.aarch64/mips架构必须写成xplatform)
@@ -50,6 +51,19 @@ CONFIG_PARAM+="-nomake tests "              # 不编译测试代码
 
 CONFIG_PARAM+="-skip qtwebengine "
 CONFIG_PARAM+="-qt-zlib -qt-pcre -qt-libpng -qt-libjpeg -qt-freetype -qt-xcb -qt-harfbuzz "
+# 选择Qt版本(开源, 商业), 并自动确认许可认证
+CONFIG_PARAM+="-opensource "                # 编译开源版本, -commercial商业版本
+CONFIG_PARAM+="-confirm-license "           # 自动确认许可认证
+
+echo "../configure $CONFIG_PARAM $QT_COMPLIER $QT_INSTALL_PATH"
+../configure $CONFIG_PARAM $QT_COMPLIER $QT_INSTALL_PATH
+-------------------- 编译最全版本 --------------------
+#! /bin/bash
+QT_INSTALL_PATH="-prefix /Qt-5.12.12-x64"   # Qt安装路径(自己对应修改)
+QT_COMPLIER+="-platform linux-g++-64"       # 编译器(x64架构必须写成platform.aarch64/mips架构必须写成xplatform)
+
+CONFIG_PARAM+="-shared "                    # 编译动态库(动态库为'-static')
+CONFIG_PARAM+="-release "                   # 编译release
 # 选择Qt版本(开源, 商业), 并自动确认许可认证
 CONFIG_PARAM+="-opensource "                # 编译开源版本, -commercial商业版本
 CONFIG_PARAM+="-confirm-license "           # 自动确认许可认证
