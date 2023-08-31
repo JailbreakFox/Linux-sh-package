@@ -81,13 +81,9 @@ $ ./autoConfigure.sh
 $ make -j4
 ```
 
-# QT交叉编译环境搭建 - arm/mips
+# QT交叉编译环境搭建 - arm
 ```sh
-# 搭建Qt源码文件目录如下
-$ tree tempDir
-tempDir
-├── Qt-build       # 将Qt源码包解压至此
-└── Qt5.5.1        # 在运行configure时，设置Qt prefix，最终输出编译结果至此
+# 将ThirdParty里面源码编译过的opengl库放到/opt/build-dep-aarch64目录
 
 # 新增qmake.conf文件
 -------------------- arm --------------------
@@ -106,6 +102,10 @@ include(../common/linux.conf)
 include(../common/gcc-base-unix.conf)
 include(../common/g++-unix.conf)
 
+QMAKR_INCDIR_OPENGL_ES2 = /opt/build-dep-aarch64/include
+QMAKR_LIBDIR_OPENGL_ES2 = /opt/build-dep-aarch64/lib
+QMAKE_LIBS_OPENGL_ES2 = -lglapi -lGLESv2
+
 # modifications to g++.conf
 QMAKE_CC                = aarch64-linux-gnu-gcc
 QMAKE_CXX               = aarch64-linux-gnu-g++
@@ -119,36 +119,6 @@ QMAKE_NM                = aarch64-linux-gnu-nm -P
 QMAKE_STRIP             = aarch64-linux-gnu-strip
 load(qt_config)
 '
--------------------- mips --------------------
-$ cp -r qtbase/mkspecs/linux-arm-gnueabi-g++ qtbase/mkspecs/linux-mips-g++
-$ vim qtbase/mkspecs/linux-mips-g++/qmake.conf
-'
-#
-# qmake configuration for building with linux-mips-g++
-#
-
-MAKEFILE_GENERATOR      = UNIX
-CONFIG                 += incremental
-QMAKE_INCREMENTAL_STYLE = sublib
-
-include(../common/linux.conf)
-include(../common/gcc-base-unix.conf)
-include(../common/g++-unix.conf)
-
-# modifications to g++.conf
-QMAKE_CC                = mips64el-loongson-linux-gcc
-QMAKE_CXX               = mips64el-loongson-linux-g++
-QMAKE_LINK              = mips64el-loongson-linux-g++
-QMAKE_LINK_SHLIB        = mips64el-loongson-linux-g++
-
-# modifications to linux.conf
-QMAKE_AR                = mips64el-loongson-linux-ar cqs
-QMAKE_OBJCOPY           = mips64el-loongson-linux-objcopy
-QMAKE_NM                = mips64el-loongson-linux-nm -P
-QMAKE_STRIP             = mips64el-loongson-linux-strip
-load(qt_config)
-'
-----------------------------------------------------
 
 # 新建如下脚本 autoConfigure.sh ，用于构建Qt源码的makefile
 -------------------- arm --------------------
@@ -156,33 +126,32 @@ load(qt_config)
 QT_INSTALL_PATH="-prefix /Qt-5.12.12-x64"   # Qt安装路径(自己对应修改)
 QT_COMPLIER+="-platform linux-g++-64"       # 编译器(x64架构必须写成platform.aarch64/mips架构必须写成xplatform)
 
-CONFIG_PARAM+="-shared "                    # 编译动态库(动态库为'-static')
+CONFIG_PARAM+="-v -shared "                    # 编译动态库(动态库为'-static')
 CONFIG_PARAM+="-release "                   # 编译release
-CONFIG_PARAM+="-no-opengl "                 # opengl使用需要交叉编译
+CONFIG_PARAM+="-make libs "
+CONFIG_PARAM+="-nomake tools "              # 不编译tools
+CONFIG_PARAM+="-nomake examples "           # 不编译examples
+CONFIG_PARAM+="-nomake tests "              # 不编译tests
+
+CONFIG_PARAM+="-skip qtwebengine -skip qt3d -no-qml-debug "
 # 选择Qt版本(开源, 商业), 并自动确认许可认证
 CONFIG_PARAM+="-opensource "                # 编译开源版本, -commercial商业版本
 CONFIG_PARAM+="-confirm-license "           # 自动确认许可认证
 
 echo "../configure $CONFIG_PARAM $QT_COMPLIER $QT_INSTALL_PATH"
 ../configure $CONFIG_PARAM $QT_COMPLIER $QT_INSTALL_PATH
--------------------- mips --------------------
-#! /bin/bash
-QT_INSTALL_PATH="-prefix /Qt-5.12.12-x64"       # Qt安装路径(自己对应修改)
-QT_COMPLIER+="-xplatform linux-mips-g++"        # 编译器(x64架构必须写成platform.aarch64/mips架构必须写成xplatform)
-
-CONFIG_PARAM+="-shared "                        # 编译动态库(动态库为'-static')
-CONFIG_PARAM+="-release "                       # 编译release
-# 选择Qt版本(开源, 商业), 并自动确认许可认证
-CONFIG_PARAM+="-opensource "                    # 编译开源版本, -commercial商业版本
-CONFIG_PARAM+="-confirm-license "               # 自动确认许可认证
-CONFIG_PARAM+="-optimized-qmake -pch "
-CONFIG_PARAM+="-qt-libjpeg -qt-libpng -qt-zlib -qpa linuxfb "
-CONFIG_PARAM+="-skip qt3d -skip qtcanvas3d "
-CONFIG_PARAM+="-no-opengl -no-sse2 -no-openssl -no-cups -no-glib -no-iconv -no-pch"
-
-echo "../configure $CONFIG_PARAM $QT_COMPLIER $QT_INSTALL_PATH"
-../configure $CONFIG_PARAM $QT_COMPLIER $QT_INSTALL_PATH
 ----------------------------------------------------
+
+# 将脚本放到源码解压目录Qt-build/build并执行
+# 这步实际就是在../configure
+$ chmod +x autoConfigure.sh
+$ ./autoConfigure.sh
+
+# 编译
+$ make -j $(grep -c ^processor /proc/cpuinfo) # 后面这句可查看当前系统最高可运行编译的核数
+
+# 安装
+$ make install -j $(grep -c ^processor /proc/cpuinfo)
 ```
 
 # 运行时库制作
