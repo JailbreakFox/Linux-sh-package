@@ -108,20 +108,20 @@ load(qt_config)
 # 新建如下脚本 autoConfigure.sh ，用于构建Qt源码的makefile
 -------------------- arm --------------------
 #! /bin/bash
-QT_INSTALL_PATH="-prefix /Qt-5.12.12"       # Qt安装路径(自己对应修改)
-QT_COMPLIER+="-platform linux-g++-64"       # 编译器(x64架构必须写成platform.aarch64/mips架构必须写成xplatform)
+QT_INSTALL_PATH="-prefix /Qt-5.12.12"          # Qt安装路径(自己对应修改)
+QT_COMPLIER+="-platform linux-aarch64-gnu-g++" # 编译器
 
-CONFIG_PARAM+="-shared "                    # 编译动态库(动态库为'-static')
-CONFIG_PARAM+="-release "                   # 编译release
+CONFIG_PARAM+="-shared "                       # 编译动态库(动态库为'-static')
+CONFIG_PARAM+="-release "                      # 编译release
 CONFIG_PARAM+="-make libs "
-CONFIG_PARAM+="-nomake tools "              # 不编译tools
-CONFIG_PARAM+="-nomake examples "           # 不编译examples
-CONFIG_PARAM+="-nomake tests "              # 不编译tests
+CONFIG_PARAM+="-nomake tools "                 # 不编译tools
+CONFIG_PARAM+="-nomake examples "              # 不编译examples
+CONFIG_PARAM+="-nomake tests "                 # 不编译tests
 
 CONFIG_PARAM+="-skip qtwebengine -skip qt3d -no-qml-debug "
 # 选择Qt版本(开源, 商业), 并自动确认许可认证
-CONFIG_PARAM+="-opensource "                # 编译开源版本, -commercial商业版本
-CONFIG_PARAM+="-confirm-license "           # 自动确认许可认证
+CONFIG_PARAM+="-opensource "                   # 编译开源版本, -commercial商业版本
+CONFIG_PARAM+="-confirm-license "              # 自动确认许可认证
 
 echo "../configure $CONFIG_PARAM $QT_COMPLIER $QT_INSTALL_PATH"
 ../configure $CONFIG_PARAM $QT_COMPLIER $QT_INSTALL_PATH
@@ -182,7 +182,7 @@ load(qt_config)
 -------------------- mips --------------------
 #! /bin/bash
 QT_INSTALL_PATH="-prefix /Qt-5.12.12"       # Qt安装路径(自己对应修改)
-QT_COMPLIER+="-platform linux-g++-64"       # 编译器(x64架构必须写成platform.aarch64/mips架构必须写成xplatform)
+QT_COMPLIER+="-xplatform linux-mips-64"      # 编译器
 
 CONFIG_PARAM+="-shared "                    # 编译动态库(动态库为'-static')
 CONFIG_PARAM+="-release "                   # 编译release
@@ -203,6 +203,7 @@ echo "../configure $CONFIG_PARAM $QT_COMPLIER $QT_INSTALL_PATH"
 
 # 将脚本放到源码解压目录Qt-build/build并执行
 # 这步实际就是在../configure
+# 注意，如果本地安装过mesa，则libglapi.so libGLESv2.so有可能与x86的冲突，可以加-v查看具体报错点，如果是依赖到了x86版本的库，可以修改对应软链接到mips版的库所在点
 $ chmod +x autoConfigure.sh
 $ ./autoConfigure.sh
 
