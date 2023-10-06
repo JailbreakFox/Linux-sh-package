@@ -5,7 +5,9 @@ https://jingyan.baidu.com/article/37bce2bec1a11d5002f3a28b.html
 ```sh
 # 添加CMake的bin目录环境变量
 
-# 打开Visual Studio命令提示进程，执行以下命令
+# 打开Visual Studio命令提示进程(x86 Native Tools Command Prompt for VS 2017)
+# 或者执行vs目录的XXX\VC\Auxiliary\Build\vcvarsall.bat x86进入命令模式
+# 执行以下命令
 rd /s/q build # 删除build文件夹
 mkdir build
 cd build

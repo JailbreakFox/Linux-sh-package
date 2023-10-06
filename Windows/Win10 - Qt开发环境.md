@@ -88,19 +88,18 @@ https://jingyan.baidu.com/article/37bce2bec1a11d5002f3a28b.html
 
 # CMake 3.14(已保存在硬盘)
 
-# MSVC编译器(此方法单独安装编译器，无需安装vs)
+# MSVC编译器(vs2017生成工具用于单独安装编译器，无需安装vs)
 # 官网 https://my.visualstudio.com/Downloads 搜索"Build Tools for Visual Studio 2017 (version 15.9)"
 # 使用下载的工具生成离线安装包(生成的离线包已放在硬盘中)
 # $ vs_buildtools.exe -h可查看帮助
 # --add 额外功能包列表https://learn.microsoft.com/en-us/visualstudio/install/workload-component-id-vs-build-tools?view=vs-2017&preserve-view=true
 $ vs_buildtools.exe --layout C:\VS_BuildTools2017_offline --add Microsoft.VisualStudio.Workload.MSBuildTools --add Microsoft.VisualStudio.Workload.VCTools --add Microsoft.VisualStudio.Component.Windows10SDK.17763 --lang en-US
 # 将VS_BuildTools2017_offline目录放到目标机器中
-# 首先安装VS_BuildTools2017_offline\certificates目录下的三个签名(第一步选择“本计算机”)
-# 双击安装VS_BuildTools2017_offline\vs_BuildTools.exe(选择对应sdk 10.0.17763)
+# 首先安装VS_BuildTools2017_offline\certificates目录下的三个签名(第一步选择“本地计算机”)
+# 双击安装VS_BuildTools2017_offline\vs_BuildTools.exe(选择对应sdk 10.0.17763 安装路径选择默认C:\Program Files (x86)\Microsoft Visual Studio\2017\BuildTools 否则Qt找不到)
 
 # WindowsSDK(10.0.17763.132) - 内部包含cdb
-# https://developer.microsoft.com/en-us/windows/downloads/sdk-archive/
-# 安装方式:winsdksetup.exe->'Debugging tools for Windows'
+# 已在vs2017生成工具中包含，安装路径默认为
 
 1.添加 qtcreator -> 工具 -> 选项 -> Qt Versions : XXX\bin\qmake.exe
 2.添加 qtcreator -> 工具 -> 选项 -> 编译器 : XXX\VC\Auxiliary\Build\vcvarsall.bat x86
@@ -121,8 +120,20 @@ https://www.python.org/downloads/windows/
 $ configure -prefix "D:\Qt-5.15.6-build" -shared -nomake examples -nomake tests -skip qtwebengine -skip qtspeech -no-qml-debug -opensource -confirm-license -platform win32-msvc -mp
 
 # 开始编译
- $ nmake
+$ nmake
 $ nmake install
+```
+
+# QtCreator源码编译
+```sh
+# 下载源码(尽量选择高版本 低版本搜索不到msvc编译器)
+https://mirrors.tuna.tsinghua.edu.cn/qt/archive/qtcreator/5.0/5.0.3/
+
+# 生成makefile
+$ cmake -G "NMake Makefiles" -DCMAKE_INSTALL_PREFIX=../install ..
+
+# 开始编译
+$ nmake && nmake install
 ```
 
 # Qt打包工具的使用
