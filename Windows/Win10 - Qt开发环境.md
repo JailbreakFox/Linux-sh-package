@@ -50,13 +50,14 @@ https://jingyan.baidu.com/article/37bce2bec1a11d5002f3a28b.html
 # sdk https://developer.microsoft.com/zh-cn/windows/downloads/sdk-archive/
 # 离线开发环境就装离线包，能联网也能使用在线安装
 # 注意：不同版本安装过程不一样。
-#           在安装之前先打开 控制中心 - 卸载程序，搜索 'sdk' 和 'redistributable'，卸载干净
+#           在安装之前先打开 控制中心 - 卸载程序，搜索 'Windows Software Development Kit' 和 'Redistributable'，卸载干净
 #         2015版本：1. 离线包 - 已保存在硬盘。只需要安装VC++开发模块
 #                           2. qt-vsaddin-msvc2015 - 已保存在硬盘。安装后，VS能使用Qt开发的插件
-#                           3. WindowsSDK - 已保存在硬盘。内部包含debug工具，安装时只需要'Debugging tools for Windows'（可认为就是linux下的gdb，下载地址在上方）
+#                           3. WindowsSDK(10.0.14393.795) - 已保存在硬盘(内部包含debug工具,硬盘中存放为离线包)。在线安装方式:winsdksetup.exe->'Debugging tools for Windows';离线包下载的方式winsdksetup.exe->选择第二个为其他机器安装的包(将该下载的目录放到目标机器中并执行winsdksetup.exe->'Debugging tools for Windows'安装)
 #         2017版本：1.在线包 - 已保存在硬盘。需要在线安装，离线包未找到。安装时选择 '使用C++的桌面开发' 即可
-#                           2. qt-vsaddin-msvc2017 - 已保存在硬盘。
-#                           3. WindowsSDK - 已保存在硬盘。与2015使用相同版本，即windows sdk 10.0.16299
+#                           2. qt-vsaddin-msvc2017 - 已保存在硬盘(硬盘中存放为离线包)。
+#                           3. WindowsSDK(10.0.17763.132) - 已保存在硬盘。如果用不了就安装2015的sdk
+#                           4. WindowsSDK_Win11(10.1.22621.755) - win11安装这个
 # Qt
 # 安装方式往上找，版本使用5.12.0
 #         安装组件: sources - 源码
@@ -85,15 +86,25 @@ https://jingyan.baidu.com/article/37bce2bec1a11d5002f3a28b.html
 # 下载组件: qtcreator.7z        qtcreator已编译版本(已保存在硬盘)
 #          qtcreatorcbdext.7z 用于CDB调试debug(已保存在硬盘)
 
-# CMake
+# CMake 3.14(已保存在硬盘)
 
-# Visual Studio 2017
+# MSVC编译器(此方法单独安装编译器，无需安装vs)
+# 官网 https://my.visualstudio.com/Downloads 搜索"Build Tools for Visual Studio 2017 (version 15.9)"
+# 使用下载的工具生成离线安装包(生成的离线包已放在硬盘中)
+# $ vs_buildtools.exe -h可查看帮助
+# --add 额外功能包列表https://learn.microsoft.com/en-us/visualstudio/install/workload-component-id-vs-build-tools?view=vs-2017&preserve-view=true
+$ vs_buildtools.exe --layout C:\VS_BuildTools2017_offline --add Microsoft.VisualStudio.Workload.MSBuildTools --add Microsoft.VisualStudio.Workload.VCTools --add Microsoft.VisualStudio.Component.Windows10SDK.17763 --lang en-US
+# 将VS_BuildTools2017_offline目录放到目标机器中
+# 首先安装VS_BuildTools2017_offline\certificates目录下的三个签名(第一步选择“本计算机”)
+# 双击安装VS_BuildTools2017_offline\vs_BuildTools.exe(选择对应sdk 10.0.17763)
 
-# CDB的安装包  WindowsSDK/sdksetup.exe 只需要勾选Debuggers x86
+# WindowsSDK(10.0.17763.132) - 内部包含cdb
+# https://developer.microsoft.com/en-us/windows/downloads/sdk-archive/
+# 安装方式:winsdksetup.exe->'Debugging tools for Windows'
 
 1.添加 qtcreator -> 工具 -> 选项 -> Qt Versions : XXX\bin\qmake.exe
 2.添加 qtcreator -> 工具 -> 选项 -> 编译器 : XXX\VC\Auxiliary\Build\vcvarsall.bat x86
-3.添加 qtcreator -> 工具 -> 选项 -> Debuggers : C:\Program Files (x86)\Windows Kits\10\Debuggers\x86\cdb.exe
+3.添加 qtcreator -> 工具 -> 选项 -> Debuggers : XXX\Windows Kits\10\Debuggers\x86\cdb.exe
 4.添加 qtcreator -> 工具 -> 选项 -> CMake : XXX\bin\cmake.exe
 5.工具 -> 选项 -> 文本编辑器 -> 行为 -> 制表符策略(混合) 制表符尺寸(4) 对其连续的行(用一般的缩进对齐)
 ```
