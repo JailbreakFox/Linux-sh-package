@@ -99,7 +99,8 @@ $ vs_buildtools.exe --layout C:\VS_BuildTools2017_offline --add Microsoft.Visual
 # 双击安装VS_BuildTools2017_offline\vs_BuildTools.exe(选择对应sdk 10.0.17763 安装路径选择默认C:\Program Files (x86)\Microsoft Visual Studio\2017\BuildTools 否则Qt找不到)
 
 # WindowsSDK(10.0.17763.132) - 内部包含cdb
-# 已在vs2017生成工具中包含，安装路径默认为
+# 已在vs2017生成工具中包含，但是需要在"添加或删除程序"中找到Windows Software Development Kit，并点击修复->changed，点选添加安装'Debugging tools for Windows'功能即可
+# 安装路径默认为C:\Program Files (x86)\Windows Kits\10
 
 1.添加 qtcreator -> 工具 -> 选项 -> Qt Versions : XXX\bin\qmake.exe
 2.添加 qtcreator -> 工具 -> 选项 -> 编译器 : XXX\VC\Auxiliary\Build\vcvarsall.bat x86
