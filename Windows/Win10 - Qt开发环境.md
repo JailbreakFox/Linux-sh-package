@@ -99,7 +99,7 @@ $ vs_buildtools.exe --layout C:\VS_BuildTools2017_offline --add Microsoft.Visual
 # 双击安装VS_BuildTools2017_offline\vs_BuildTools.exe(选择对应sdk 10.0.17763 安装路径选择默认C:\Program Files (x86)\Microsoft Visual Studio\2017\BuildTools 否则Qt找不到)
 
 # WindowsSDK(10.0.17763.132) - 内部包含cdb
-# 已在vs2017生成工具中包含，但是需要在"添加或删除程序"中找到Windows Software Development Kit，并点击修复->changed，点选添加安装'Debugging tools for Windows'功能即可
+# 已在vs2017生成工具中包含，但是需要在"添加或删除程序"中找到Windows Software Development Kit，并点击修复->changed，点选添加(不要删除之前安装的内容)安装'Debugging tools for Windows'功能即可
 # 安装路径默认为C:\Program Files (x86)\Windows Kits\10
 
 1.添加 qtcreator -> 工具 -> 选项 -> Qt Versions : XXX\bin\qmake.exe
@@ -107,6 +107,15 @@ $ vs_buildtools.exe --layout C:\VS_BuildTools2017_offline --add Microsoft.Visual
 3.添加 qtcreator -> 工具 -> 选项 -> Debuggers : XXX\Windows Kits\10\Debuggers\x86\cdb.exe
 4.添加 qtcreator -> 工具 -> 选项 -> CMake : XXX\bin\cmake.exe
 5.工具 -> 选项 -> 文本编辑器 -> 行为 -> 制表符策略(混合) 制表符尺寸(4) 对其连续的行(用一般的缩进对齐)
+6.Kit -> CMake generator -> NMake Makefiles + CodeBlocks
+
+# 卸载
+Microsoft Visual C++ 2017 Redistributable(x64)
+Microsoft Visual C++ 2017 Redistributable(x86)
+Microsoft Visual Studio Installer
+Visual Studio 15 生成工具2017
+Windows SDK AddOn
+Windows software Development Kit
 ```
 
 # Qt源码编译
