@@ -54,7 +54,7 @@ https://jingyan.baidu.com/article/37bce2bec1a11d5002f3a28b.html
 #         2015版本：1. 离线包 - 已保存在硬盘。只需要安装VC++开发模块
 #                           2. qt-vsaddin-msvc2015 - 已保存在硬盘。安装后，VS能使用Qt开发的插件
 #                           3. WindowsSDK(10.0.14393.795) - 已保存在硬盘(内部包含debug工具,硬盘中存放为离线包)。在线安装方式:winsdksetup.exe->'Debugging tools for Windows';离线包下载的方式winsdksetup.exe->选择第二个为其他机器安装的包(将该下载的目录放到目标机器中并执行winsdksetup.exe->'Debugging tools for Windows'安装)
-#         2017版本：1.在线包 - 已保存在硬盘。需要在线安装，离线包未找到。安装时选择 '使用C++的桌面开发' 即可
+#         2017版本：1.在线包 - 已保存在硬盘。需要在线安装，离线包未找到。安装时选择 '使用C++的桌面开发' 勾选单个组件->VC++ 2017 version 15.9 v14.16 latest v141 tools 即可
 #                           2. qt-vsaddin-msvc2017 - 已保存在硬盘(硬盘中存放为离线包)。
 #                           3. WindowsSDK(10.0.17763.132) - 已保存在硬盘。如果用不了就安装2015的sdk
 #                           4. WindowsSDK_Win11(10.1.22621.755) - win11安装这个
