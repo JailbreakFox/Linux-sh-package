@@ -34,6 +34,12 @@ $ sudo apt update
 $ sudo apt-get install ros-noetic-desktop-full # Ubuntu20.04
 $ sudo apt-get install ros-melodic-desktop-full # Ubuntu18.04
 $ sudo apt-get install ros-kinetic-desktop-full # Ubuntu16.04
+
+# 添加环境变量
+$ vim ~/.bashrc
+`
+source /opt/ros/kinetic/setup.bash
+`
 ```
 
 # 配置C/C++开发环境
