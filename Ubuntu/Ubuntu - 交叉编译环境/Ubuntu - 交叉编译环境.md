@@ -584,6 +584,44 @@ $ make -DCROSS_COMPILE_FRAMEWORK=aarch64 ..
 # $ make -DCROSS_COMPILE_FRAMEWORK=mips64 ..
 ```
 
+# Android交叉编译环境搭建
+```sh
+# 下载最新Linux 64位版本Android NDK.此处以r26d版本为例
+# https://developer.android.com/ndk/downloads?hl=zh-cn
+
+# 将包解压到/opt/android-ndk-r26d
+# 添加环境变量 vi ~/.bashrc 加入PATH=$PATH:/opt/Qt-5.5.1-aarch64/bin:/opt/android-ndk-r26d/toolchains/llvm/prebuilt/linux-x86_64/bin
+
+# x86_64版本cmake编译时添加如下内容
+'
+set(CMAKE_C_COMPILER x86_64-linux-android21-clang)
+set(CMAKE_CXX_COMPILER x86_64-linux-android21-clang++)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -static-libstdc++") # 静态依赖c++库
+'
+# arm64版本cmake编译时添加如下内容
+'
+set(CMAKE_C_COMPILER aarch64-linux-android21-clang)
+set(CMAKE_CXX_COMPILER aarch64-linux-android21-clang++)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -static-libstdc++") # 静态依赖c++库
+'
+```
+
+# Android仿真环境搭建
+```sh
+# 下载并安装Genymotion，任意搭建一款安卓收集系统环境(仿真环境均为x86环境，实际手机大多为arm，需要注意)
+# https://www.genymotion.com/product-desktop/download/
+
+# cmd到xxx\Genymotion\tools\目录
+# 拷贝二进制到手机文件夹
+$ adb push '本地二进制路径' /data/local/tmp/
+
+# shell进入到手机内部运行进程
+$ adb shell
+$ cd /data/local/tmp/
+$ chmod +x '二进制名'
+$ ./'二进制名'
+```
+
 # Qt版本选择工具使用
 ```sh
 -------------------- QMake --------------------
