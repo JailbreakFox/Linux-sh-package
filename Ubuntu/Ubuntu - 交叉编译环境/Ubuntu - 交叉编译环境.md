@@ -607,9 +607,11 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -static-libstdc++") # 静态依赖c++库
 ```
 
 # Android仿真环境搭建
+仿真环境均为x86环境，实际手机大多为arm，需要注意
 ```sh
-# 下载并安装Genymotion，任意搭建一款安卓收集系统环境(仿真环境均为x86环境，实际手机大多为arm，需要注意)
+# 下载并安装Genymotion，选择Windows (64bit) + VirtualBox
 # https://www.genymotion.com/product-desktop/download/
+# 任意搭建一款安卓手机系统环境
 
 # cmd到xxx\Genymotion\tools\目录
 # 拷贝二进制到手机文件夹
