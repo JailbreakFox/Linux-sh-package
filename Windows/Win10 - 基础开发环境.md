@@ -29,8 +29,10 @@ https://www.7-zip.org/
 # SpaceSniffer 磁盘清理软件
 http://www.uderzo.it/main_products/space_sniffer/download_alt.html
 
-# WinSCP 文件传输
+# WinSCP 远程文件同步
 https://winscp.net/eng/index.php
+# FreeFileSync 本地文件同步
+https://github.com/hkneptune/FreeFileSync
 
 # BoostNote 开源云笔记
 https://github.com/BoostIO/boost-releases/releases/
