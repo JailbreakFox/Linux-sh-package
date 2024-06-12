@@ -45,6 +45,9 @@ https://obsproject.com/
 
 # ssh工具
 https://github.com/kingToolbox/WindTerm
+
+# C/C++代码混淆工具
+http://stunnix.com/prod/cxxo/
 ```
 
 # Hexo博客环境搭建
