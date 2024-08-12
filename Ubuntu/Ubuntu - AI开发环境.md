@@ -121,7 +121,7 @@ pip install stable-baselines3[extra]
 # 训练gym(mujoco)自带的游戏
 git clone https://github.com/Jitu0110/RLMujoco.git
 cd /root/RLMujoco/Code
-python main.py Humanoid-v4 SAC -t
+python main.py Humanoid-v4 SAC -t # Ant-v4 HalfCheetah-v4
 ```
 
 # Anaconda基础命令
