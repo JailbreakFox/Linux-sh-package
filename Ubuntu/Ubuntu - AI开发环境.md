@@ -71,6 +71,9 @@ for i_episode in range(10):
         break
 env.close()
 '
+
+# 安装完整版Gymnasium(gym2021年已不再维护)
+pip install gymnasium[all]
 ```
 
 # Anaconda基础命令
@@ -96,4 +99,14 @@ env.close()
 	conda remove <package_name>
 9.升级Anaconda
 	conda update --all
+```
+
+# 学习网站
+```sh
+# gym游戏
+# https://pypi.org/
+# 例如马里奥 https://pypi.org/project/gym-super-mario-bros/
+
+# gymnasium官方教程
+# https://gymnasium.farama.org/
 ```
