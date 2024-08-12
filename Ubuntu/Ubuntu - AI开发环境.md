@@ -71,9 +71,57 @@ for i_episode in range(10):
         break
 env.close()
 '
-
+```
+# Gymnasium环境搭建(需要先安装Gym环境)
+```sh
 # 安装完整版Gymnasium(gym2021年已不再维护)
 pip install gymnasium[all]
+
+# 安装插件
+pip install free-mujoco-py
+sudo apt-get install libosmesa6-dev
+sudo apt-get install patchelf
+
+# 附上测试代码
+'
+import mujoco_py
+import os
+
+mj_path = mujoco_py.utils.discover_mujoco()
+xml_path = os.path.join(mj_path, 'model', 'arm26.xml')
+
+model = mujoco_py.load_model_from_path(xml_path)
+
+sim = mujoco_py.MjSim(model)
+viewer = mujoco_py.MjViewer(sim)
+sim_state = sim.get_state()
+
+while True:
+    sim.set_state(sim_state)
+
+    for i in range(1000):
+        if i < 2:
+            sim.data.ctrl[:] = 0.0
+        else:
+            sim.data.ctrl[:] = -1.0
+        sim.step()
+        viewer.render()
+
+    if os.getenv('TESTING') is not None:
+        break
+'
+```
+
+# (进阶)stable-baselines3安装
+stable-baselines3包含了常见的强化学习算法
+```sh
+# 安装
+pip install stable-baselines3[extra]
+
+# 训练gym(mujoco)自带的游戏
+git clone https://github.com/Jitu0110/RLMujoco.git
+cd /root/RLMujoco/Code
+python main.py Humanoid-v4 SAC -t
 ```
 
 # Anaconda基础命令
