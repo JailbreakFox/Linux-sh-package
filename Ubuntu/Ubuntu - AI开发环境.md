@@ -82,6 +82,13 @@ pip install free-mujoco-py
 sudo apt-get install libosmesa6-dev
 sudo apt-get install patchelf
 
+# 修复mujoco bug
+vi /opt/anaconda3/envs/pytorch/lib/python3.8/site-packages/gymnasium/envs/mujoco/mujoco_rendering.py
+'
+# 593行
+bottomleft, "Solver iterations", str(self.data.solver_niter + 1)
+'
+
 # 附上测试代码
 '
 import mujoco_py
