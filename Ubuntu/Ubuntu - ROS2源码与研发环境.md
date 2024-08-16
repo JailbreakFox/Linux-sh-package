@@ -6,7 +6,7 @@
 source ~/ros2_foxy/install/setup.bash
 ```
 
-# 搭建开发环境
+# 搭建研发环境
 ```sh
 # 直接安装ros2 foxy，安装后目录在/opt/ros/foxy
 sudo apt install ros-foxy-desktop
