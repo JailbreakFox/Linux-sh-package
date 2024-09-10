@@ -151,3 +151,40 @@ $ nmake && nmake install
 # 将已经编译好的exe文件单独放到某目录下
 windeployqt 'XXX.exe'
 ```
+
+# Android开发环境搭建
+```sh
+# 安装jdk-8u351-windows-x64.exe(已保存在硬盘)
+# 添加JAVA_HOME环境变量，路径为xxx\jdk1.8.0_351
+# 在PATH环境变量中添加，%JAVA_HOME%\bin
+$ javac -version
+
+# 解压android-ndk-r21e-windows-x86_64.zip(已保存在硬盘)
+
+# 解压android-sdk_r24.4.1-windows.zip(已保存在硬盘)
+# 双击 xxx\android-sdk-windows\SDK Manager.exe 安装
+	'Tools==>Android SDK Build-tools(版本28.03)'
+	'Android 10==>SDK Platform'
+	'Extras==>Google USB Driver'
+# 将platform-tools.zip解压到xxx\android-sdk-windows\platform-tools
+# 在PATH环境变量中添加，xxx\android-sdk-windows\platform-tools
+
+# 打卡qtcreator-工具-选项-设备
+	'Android SDK的路径': xxx\android-sdk-windows
+	'Android NDK的路径': xxx\android-ndk-r21e
+
+# 解压android.zip(从Qt5.14.2安装目录下取出，是安卓的开发工具链)
+# 打卡qtcreator-工具-选项-Kits-Qt Versions  添加
+	'xxx\android\bin\qmake.exe'
+
+# 打卡qtcreator-工具-选项-Kits   添加构建套件
+	'名称': 安卓
+	'Device type': Android设备
+	'Device': 在Android上运行（Andorid类型的默认设备）
+	'Compiler': Android Clang（C/C++，arm）  # arm是32位 aarch64是64位
+	'Debbuger': Android Debugger for Android Clang（C/C++，arm）
+	'Qt version': Qt 5.14.2（android）
+
+# 任意编译一个项目，会提示gradle无法下载，此时进入'C:\Users\Administrator\.gradle\wrapper\dists\gradle-5.5.1-bin\下载乱码'目录，删除所有文件，并将gradle-5.5.1-bin.zip放置到该目录下
+# 再次编译项目
+```
