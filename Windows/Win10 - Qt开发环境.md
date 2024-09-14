@@ -193,4 +193,9 @@ $ javac -version
 
 # 注意在使用Qt for android时,CMake必须将add_excutable都替换为add_library
 # qmake/cmake的安卓示例程序可以直接在qtcreator里面新建实现
+
+# 注意如果有用到64位的库,需要将
+	'qtcreator-项目-Key-ANDROID_ABI设置为arm64-v8a'
+	'qtcreator-项目-Key-ANDROID_BUILD_ABI_arm64-v8a设置为ON'
+	'qtcreator-项目-Key-ANDROID_BUILD_ABI_armeabi-v7a设置为OFF'
 ```
