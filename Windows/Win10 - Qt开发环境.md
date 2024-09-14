@@ -184,6 +184,12 @@ $ javac -version
 
 # 任意编译一个项目，会提示gradle无法下载，此时进入'C:\Users\Administrator\.gradle\wrapper\dists\gradle-5.5.1-bin\下载乱码'目录，删除所有文件，并将gradle-5.5.1-bin.zip放置到该目录下
 # 再次编译项目
+```
+
+# Andorid远程调试
+```sh
+# 手机必须提前打开USB开发模式
+# 如果可以,关闭外部应用检测(不关闭的话每次调试手机会提醒安装)
 
 # 注意在使用Qt for android时,CMake必须将add_excutable都替换为add_library
 # qmake/cmake的安卓示例程序可以直接在qtcreator里面新建实现
