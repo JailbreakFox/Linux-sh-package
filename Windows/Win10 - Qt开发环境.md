@@ -169,13 +169,10 @@ $ javac -version
 # 将platform-tools.zip解压到xxx\android-sdk-windows\platform-tools
 # 在PATH环境变量中添加，xxx\android-sdk-windows\platform-tools
 
+# 安装qtcreator(5.14.2),注意这里不要使用Qt预编译版本了(安卓编译工具链似乎要与Qt版本一致)
 # 打卡qtcreator-工具-选项-设备
 	'Android SDK的路径': xxx\android-sdk-windows
 	'Android NDK的路径': xxx\android-ndk-r21e
-
-# 解压android.zip(从Qt5.14.2安装目录下取出，是安卓的开发工具链)
-# 打卡qtcreator-工具-选项-Kits-Qt Versions  添加
-	'xxx\android\bin\qmake.exe'
 
 # 打卡qtcreator-工具-选项-Kits   添加构建套件
 	'名称': 安卓
@@ -187,4 +184,7 @@ $ javac -version
 
 # 任意编译一个项目，会提示gradle无法下载，此时进入'C:\Users\Administrator\.gradle\wrapper\dists\gradle-5.5.1-bin\下载乱码'目录，删除所有文件，并将gradle-5.5.1-bin.zip放置到该目录下
 # 再次编译项目
+
+# 注意在使用Qt for android时,CMake必须将add_excutable都替换为add_library
+# qmake/cmake的安卓示例程序可以直接在qtcreator里面新建实现
 ```
