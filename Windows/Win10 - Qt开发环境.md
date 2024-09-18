@@ -198,4 +198,6 @@ $ javac -version
 	'qtcreator-项目-Key-ANDROID_ABI设置为arm64-v8a'
 	'qtcreator-项目-Key-ANDROID_BUILD_ABI_arm64-v8a设置为ON'
 	'qtcreator-项目-Key-ANDROID_BUILD_ABI_armeabi-v7a设置为OFF'
+
+# 注意编译输出路径名字不能过长，如果过长需要将其放到指定较短长度的目录下 
 ```
