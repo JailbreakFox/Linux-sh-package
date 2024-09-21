@@ -55,6 +55,8 @@ $ source ~/.bashrc
 
 # 安装自动补全工具
 $ sudo apt install python3-argcomplete
+# 安装colcon编译工具
+$ sudo apt install python3-colcon-common-extensions
 
 # 测试例子
 # 终端一:
