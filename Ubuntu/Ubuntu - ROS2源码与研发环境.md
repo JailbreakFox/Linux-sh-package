@@ -37,7 +37,7 @@ git clone https://github.com/eclipse-cyclonedds/cyclonedds -b releases/0.10.x
 cd ..
 colcon build --packages-select cyclonedds
 
-# 配置终端环境
+# 打开~/.bashrc编辑
 # CYCLONEDDS_URI NetworkInterface name修改成自己需要cyclonedds通信的网卡，该配置用于使用cyclonedds开发
 '
 #!/bin/bash
