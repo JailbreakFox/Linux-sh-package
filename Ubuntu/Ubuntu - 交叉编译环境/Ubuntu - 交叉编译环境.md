@@ -676,6 +676,7 @@ find_package(Qt5 HINTS "$ENV{QTDIR}" COMPONENTS Core Quick REQUIRED)
 ```
 1 手动生成
 2 自动生成
+3 常见问题
 ```
 
 ***1、手动生成***  
@@ -701,8 +702,12 @@ $ chrpath -r 'rpath路径' '二进制路径'
 https://github.com/probonopd/linuxdeployqt
 ```sh
 # 将Qt二进制文件放入一个单独文件夹，然后使用自己编译的linuxdeployqt执行
-$ linuxdeployqt '二进制路径' -appimage
+$ ./linuxdeployqt '二进制路径' -appimage
 ```
+
+***3、常见问题***  
+问：如果运行时库使用时报错缺少"xcb"库，如何解决
+答：apt install qt5-default
 
 # CMake-Qt技巧
 ```sh
