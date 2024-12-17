@@ -4,7 +4,8 @@
 # Pytorch环境搭建
 ```sh
 # 安装Anaconda(用于控制python、pytorch及其他依赖库的版本)
-# https://www.anaconda.com/download/#linux
+# 官网 https://www.anaconda.com/download/#linux
+# 清华源 https://mirrors.tuna.tsinghua.edu.cn/anaconda/archive/
 $ chmod +x Anaconda3-5.1.0-Linux-x86_64.sh
 $ bash Anaconda3-5.1.0-Linux-x86_64.sh
 
