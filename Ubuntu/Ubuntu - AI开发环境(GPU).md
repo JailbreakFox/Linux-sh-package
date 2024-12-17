@@ -1,6 +1,8 @@
 # 基础环境
 该镜像未搭建，由于需要使用GPU(虚拟机使用GPU较为难配置)，建议直接安装Ubuntu系统
 
+另外Issac Gym目前只支持x86架构
+
 # Pytorch环境搭建
 ```sh
 # 安装Anaconda(用于控制python、pytorch及其他依赖库的版本)
