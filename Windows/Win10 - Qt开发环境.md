@@ -186,7 +186,7 @@ $ javac -version
 # 再次编译项目
 ```
 
-# Andorid远程调试
+# Android远程调试
 ```sh
 # 手机必须提前打开USB开发模式
 # 如果可以,关闭外部应用检测(不关闭的话每次调试手机会提醒安装)
@@ -196,9 +196,19 @@ $ javac -version
 
 # 注意如果有用到64位的库,需要将
 	'qtcreator-项目-Key-ANDROID_ABI设置为arm64-v8a'
+	'（可选）qtcreator-项目-ANDROID_NATIVE_API_LEVEL设置为24'
 	'qtcreator-项目-Key-ANDROID_BUILD_ABI_arm64-v8a设置为ON'
 	'qtcreator-项目-Key-ANDROID_BUILD_ABI_armeabi-v7a设置为OFF'
 	'点击 Apply Configureation Changes'
 
 # 注意编译输出路径名字不能过长，如果过长需要将其放到指定较短长度的目录下 
+```
+
+# Android远程Shell
+```sh
+# 查看所有设备
+$ adb devices
+
+# 登录(默认)设备
+$ adb shell
 ```
