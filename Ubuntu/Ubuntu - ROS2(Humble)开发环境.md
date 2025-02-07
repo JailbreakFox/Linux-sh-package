@@ -106,6 +106,28 @@ export CYCLONEDDS_URI='<CycloneDDS><Domain><General><Interfaces>
 $ source ~/.bashrc
 ```
 
+# 安装Moveit2
+moveit2用于机械臂移动操作的库
+```sh
+# 安装rosdep
+$ sudo rosdep init
+$ rosdep update
+
+# 安装依赖
+$ sudo apt install python3-vcstool
+
+# 安装moveit2
+$ mkdir -p moveit2_ws/src && cd moveit2_ws/src
+$ git clone https://github.com/ros-planning/moveit2_tutorials -b humble --depth 1 moveit2_tutorials
+$ vcs import < moveit2_tutorials/moveit2_tutorials.repos
+
+# 工作区软件包依赖项安装
+$ sudo apt update && rosdep install -r --from-paths . --ignore-src --rosdistro $ROS_DISTRO -y
+
+# 编译
+$ colcon build --cmake-args -DCMAKE_BUILD_TYPE=Release
+```
+
 # 生成root登陆用户
 ```sh
 # ===== 登陆界面添加root =====
