@@ -126,6 +126,10 @@ $ sudo apt update && rosdep install -r --from-paths . --ignore-src --rosdistro $
 
 # 编译
 $ colcon build --cmake-args -DCMAKE_BUILD_TYPE=Release
+
+# 测试方式
+$ source moveit2_ws/install/setup.bash
+$ ros2 launch moveit2_tutorials demo.launch.py
 ```
 
 # 生成root登陆用户
