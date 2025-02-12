@@ -124,7 +124,7 @@ $ mkdir -p moveit2_ws/src && cd moveit2_ws/src
 $ git clone https://github.com/ros-planning/moveit2_tutorials -b humble --depth 1 moveit2_tutorials
 $ vcs import < moveit2_tutorials/moveit2_tutorials.repos
 
-# 工作区软件包依赖项安装
+# 工作区软件包依赖项安装(预编译的moveit2也需要执行完成这一步安装依赖才能正常运行)
 $ cd moveit2_ws
 $ sudo apt update && rosdepc install --from-path src --ignore-src -r -y
 
