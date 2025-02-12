@@ -130,6 +130,7 @@ $ colcon build --cmake-args -DCMAKE_BUILD_TYPE=Release
 # 测试方式
 $ source moveit2_ws/install/setup.bash
 $ ros2 launch moveit2_tutorials demo.launch.py
+$ ros2 launch moveit_task_constructor_demo demo.launch.py
 ```
 
 # 生成root登陆用户
