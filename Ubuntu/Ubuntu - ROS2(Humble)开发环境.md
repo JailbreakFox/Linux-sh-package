@@ -109,9 +109,12 @@ $ source ~/.bashrc
 # 安装Moveit2
 moveit2用于机械臂移动操作的库
 ```sh
-# 安装rosdep
-$ sudo rosdep init
-$ rosdep update
+# 鱼香ROS安装rosdepc
+$ wget http://fishros.com/install -O fishros && . fishros
+
+# 安装rosdepc(非root权限)
+$ sudo rosdepc init
+$ rosdepc update
 
 # 安装依赖
 $ sudo apt install python3-vcstool
@@ -122,7 +125,8 @@ $ git clone https://github.com/ros-planning/moveit2_tutorials -b humble --depth 
 $ vcs import < moveit2_tutorials/moveit2_tutorials.repos
 
 # 工作区软件包依赖项安装
-$ sudo apt update && rosdep install -r --from-paths . --ignore-src --rosdistro $ROS_DISTRO -y
+$ cd moveit2_ws
+$ sudo apt update && rosdepc install --from-path src --ignore-src -r -y
 
 # 编译
 $ colcon build --cmake-args -DCMAKE_BUILD_TYPE=Release
