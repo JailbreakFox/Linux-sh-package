@@ -130,6 +130,11 @@ $ sudo apt update && rosdepc install --from-path src --ignore-src -r -y
 
 # 编译
 $ colcon build --cmake-args -DCMAKE_BUILD_TYPE=Release
+# 注意colcon编译可能会导致卡死 可限制串行编译
+# $ colcon build --cmake-args -DCMAKE_BUILD_TYPE=Release --executor sequential
+# 或者查询内核数并做限制
+# $ nproc # 查询核数
+# $ colcon build --cmake-args -DCMAKE_BUILD_TYPE=Release --parallel-workers 4 # 只使用4个内核
 
 # 测试方式
 $ source moveit2_ws/install/setup.bash
