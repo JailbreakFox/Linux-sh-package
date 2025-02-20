@@ -161,9 +161,3 @@ $ sudo vim /etc/hosts
 </div align=left>  
 
 &emsp;&emsp;注意此处不要点击"Retry"，而是重启AGX和`SDK-Manager`，在STEP-01中只勾选前面安装失败的SDK组件。
-
-### *0x05 安装ROS2(Humble)*
-```sh
-# 鱼香ROS按提示安装即可
-$ wget http://fishros.com/install -O fishros && . fishros
-```
