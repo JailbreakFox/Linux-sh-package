@@ -106,7 +106,7 @@ $ lsusb
 <img src="./AGX刷系统/sdk-manager配置选择.png" width = "650" height = "450" />
 </div align=left>  
 
-&emsp;&emsp;根据自己的需要，选择需要安装的内容。
+&emsp;&emsp;根据自己的需要，选择需要安装的内容（一般来说直接勾选所有）。
 
 <div align=center>
 <img src="./AGX刷系统/sdk-manager配置选择2.png" width = "650" height = "450" />
