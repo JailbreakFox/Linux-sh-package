@@ -130,13 +130,14 @@ $ lsusb
 
 ```sh
 # 源更换为国内清华源
+# ！！！注意这里一定不能选择“清理第三方源”，我们选择“仅更换系统源”
 $ wget http://fishros.com/install -O fishros && . fishros
 
-# 增加hosts
+# 增加hosts(通过终端ping指定网址找到对应IP)
 $ sudo vim /etc/hosts
 `
-23.213.41.22  www.nvidia.com
-152.199.39.144  developer.nvidia.com
+xx.xx.xx.xx  www.nvidia.com
+xx.xx.xx.xx  developer.nvidia.com
 `
 ```
 
