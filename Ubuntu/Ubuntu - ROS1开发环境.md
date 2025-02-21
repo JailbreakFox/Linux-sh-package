@@ -1,5 +1,5 @@
-# 系统镜像下载
-http://mirrors.ustc.edu.cn/ubuntu-releases/20.04.4/
+# 系统镜像Ubuntu20.04 LTS下载
+https://releases.ubuntu.com/focal/
 
 # 配置源
 直接往默认源文件中加入清华源
