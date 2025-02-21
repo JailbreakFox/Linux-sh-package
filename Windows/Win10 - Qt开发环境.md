@@ -188,7 +188,7 @@ $ javac -version
 
 # Android远程调试
 ```sh
-# 手机必须提前打开USB开发模式
+# 手机必须提前打开开发者模式、并打开"USB调试"
 # 如果可以,关闭外部应用检测(不关闭的话每次调试手机会提醒安装)
 
 # 注意在使用Qt for android时,CMake必须将add_excutable都替换为add_library
