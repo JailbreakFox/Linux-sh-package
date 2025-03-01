@@ -48,6 +48,12 @@ https://github.com/kingToolbox/WindTerm
 
 # C/C++代码混淆工具
 http://stunnix.com/prod/cxxo/
+
+# GIMP 开源图片编辑软件
+
+# 亿图 画图软件
+
+# Blender 开源三维画图软件
 ```
 
 # Hexo博客环境搭建
