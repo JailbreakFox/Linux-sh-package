@@ -16,4 +16,7 @@ write_enable=YES # 配置后可用FTP传输文件到服务器
 local_umask=022 # 普通用户目录权限755 文件权限644
 allow_writeable_chroot=YES # 
 `
+
+# 访问测试
+# 通过windows文件资源管理器访问"ftp://IP"即可打开
 ```
