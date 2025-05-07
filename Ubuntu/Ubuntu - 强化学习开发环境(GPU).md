@@ -17,7 +17,7 @@ $ wget http://fishros.com/install -O fishros && . fishros
 ```
 
 # 安装Nvidia驱动
-Software & Updates => Additional Drivers => "Using NVIDIA driver metapackage from nvidia-driver-535(proprietary)"
+Software & Updates => Additional Drivers => "Using NVIDIA driver metapackage from nvidia-driver-570(proprietary)"
 
 # Pytorch环境搭建
 ```sh
@@ -44,16 +44,16 @@ show_channel_urls: true
 '
 
 # 初始化anaconda
-$ conda init bash
+$ /root/anaconda3/bin/conda init bash
 
 # 在Anaconda中搭建Pytorch环境
 # 去Pytorch网站查找安装pytorch的具体命令 https://pytorch.org/
 # 必须使用CUDA版本
-conda create -n pytorch-gpu python=3.8
-conda activate pytorch-gpu
+$ conda create -n pytorch-gpu python=3.8
+$ conda activate pytorch-gpu
 # 从legged_gym官网找(正常情况下从pytoch官网找)对应pytoch gpu版本下载指令
 # 官网地址 https://github.com/leggedrobotics/legged_gym
-pip3 install torch==1.10.0+cu113 torchvision==0.11.1+cu113 torchaudio==0.10.0+cu113 -f https://download.pytorch.org/whl/cu113/torch_stable.html
+$ pip3 install torch==1.10.0+cu113 torchvision==0.11.1+cu113 torchaudio==0.10.0+cu113 -f https://download.pytorch.org/whl/cu113/torch_stable.html
 ```
 
 # Isaac Gym安装
@@ -93,15 +93,16 @@ $ cd legged_gym && pip install -e .
 # rsl_rl源码 https://github.com/leggedrobotics/rsl_rl
 
 # 安装extreme-parkour
-git clone git@github.com:chengxuxin/extreme-parkour.git
-cd ~/extreme-parkour/rsl_rl && pip install -e .
-cd ~/extreme-parkour/legged_gym && pip install -e .
+$ git clone git@github.com:chengxuxin/extreme-parkour.git
+$ cd ~/extreme-parkour/rsl_rl && pip install -e .
+$ cd ~/extreme-parkour/legged_gym && pip install -e .
 
 # 安装必要依赖
-pip install "numpy<1.24" pydelatin wandb tqdm opencv-python ipdb pyfqmr flask
+$ pip install "numpy<1.24" pydelatin wandb tqdm opencv-python ipdb pyfqmr flask
 ```
 
-# ISO镜像制作
+
+# ~~ISO镜像制作(安装后会导致黑屏)~~
 ```sh
 # 安装systemback
 $ sudo su
