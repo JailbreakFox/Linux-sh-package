@@ -5,6 +5,8 @@
 
 另外Issac Gym目前只支持x86架构
 
+**注意，下述所有需要pip安装的包都已经保存在《 Linux开发安装包 / AI》目录下，若有网络问题，可直接在对应anaconda环境下执行"conda install *.whl"来安装所有依赖包。**
+
 # 强化学习三件套关系
 - Isaac Gym: 提供高性能的物理仿真环境。
 - Legged Gym: 基于 Isaac Gym，专注于四足机器人的强化学习任务。
