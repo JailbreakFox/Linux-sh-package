@@ -84,6 +84,46 @@ $ cd rsl_rl && git checkout v1.0.2 && pip install -e .
 $ cd /opt
 $ git clone https://github.com/leggedrobotics/legged_gym.git
 $ cd legged_gym && pip install -e .
+
+# 测试
+$ python legged_gym/scripts/train.py --task=anymal_c_flat # 训练
+$ python legged_gym/scripts/play.py --task=anymal_c_flat # 展现训练结果
+```
+
+# legged_gym运行时问题解决
+1、`AttributeError: module 'numpy' has no attribute 'float'`
+
+```sh
+# 出现这个问题是因为np.float从1.24起被删除。所用的代码是依赖于旧版本的Numpy。您可以将你的Numpy版本降级到1.23.5.
+$ conda install numpy==1.23.5
+```
+
+2、`ModuleNotFoundError: No module named 'tensorboard'`
+
+```sh
+$ pip install tensorboard
+```
+
+3、`AttributeError: module 'distutils' has no attribute 'version'`
+
+```sh
+pip install setuptools==59.5.0
+```
+
+4、
+```sh
+/home/cxx/anaconda3/envs/issac/lib/python3.8/site-packages/torch/functional.py:445: UserWarning: torch.meshgrid: in an upcoming release, it will be required to pass the indexing argument. (Triggered internally at  ../aten/src/ATen/native/TensorShape.cpp:2157.)
+  return _VF.meshgrid(tensors, **kwargs)  # type: ignore[attr-defined]
+  Segmentation fault coredump
+```
+
+```sh
+# 训练时崩溃了。isaac gym 似乎存在内存管理问题，当使用较差显卡训练时，无法正常将训练的仿真程序运行起来，导致的崩溃。
+# 该问题的issue可以在这儿找到”https://github.com/leggedrobotics/legged_gym/issues/5“
+# 解决方案一: 可以使用cpu显示训练仿真程序，并且可以将训练的狗数量降低（默认4096条）
+$ python legged_gym/scripts/train.py --task=anymal_c_flat --sim_device=cpu --num_envs=256
+# 解决方案二: 训练过程不展示仿真程序(--headless)
+$ python legged_gym/scripts/train.py --task=anymal_c_flat --sim_device=cuda --rl_device=cuda --pipeline=gpu --num_envs=2048 --headless
 ```
 
 # (进阶)extreme-parkour
@@ -102,7 +142,6 @@ $ cd ~/extreme-parkour/legged_gym && pip install -e .
 # 安装必要依赖
 $ pip install "numpy<1.24" pydelatin wandb tqdm opencv-python ipdb pyfqmr flask
 ```
-
 
 # ~~ISO镜像制作(安装后会导致黑屏)~~
 ```sh
