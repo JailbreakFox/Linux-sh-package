@@ -132,7 +132,7 @@ $ python legged_gym/scripts/train.py --task=anymal_c_flat --sim_device=cuda --rl
 
 ```sh
 # 从HIMLoco获取Go1模型与环境配置文件
-$ git clone https://github.com/ZiwenZhuang/parkour.git
+$ git clone https://github.com/OpenRobotLab/HIMLoco
 # 将文件legged_gym/legged_gym/envs/go1拷贝
 # 将文件legged_gym/resources/robots/go1拷贝
 ```
