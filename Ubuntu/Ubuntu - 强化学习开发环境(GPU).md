@@ -122,9 +122,24 @@ pip install setuptools==59.5.0
 # 该问题的issue可以在这儿找到”https://github.com/leggedrobotics/legged_gym/issues/5“
 # 解决方案一: 可以使用cpu显示训练仿真程序，并且可以将训练的狗数量降低（默认4096条）
 $ python legged_gym/scripts/train.py --task=anymal_c_flat --sim_device=cpu --num_envs=256
+$ python legged_gym/scripts/play.py --task=anymal_c_flat --sim_device=cpu --num_envs=256 # 仿真展示
 # 解决方案二: 训练过程不展示仿真程序(--headless)
 $ python legged_gym/scripts/train.py --task=anymal_c_flat --sim_device=cuda --rl_device=cuda --pipeline=gpu --num_envs=2048 --headless
 ```
+
+# (进阶)legged_gym添加自己的机器人
+在学会使用legged_gym后，我们可能需要训练自己的机器人，这里描述下具体添加方法，可以借鉴[宇树为例](https://support.unitree.com/home/zh/developer/rl_example)。此处以Go1为例。
+
+```sh
+# 从HIMLoco获取Go1模型与环境配置文件
+$ git clone https://github.com/ZiwenZhuang/parkour.git
+# 将文件legged_gym/legged_gym/envs/go1拷贝
+# 将文件legged_gym/resources/robots/go1拷贝
+```
+
+后续训练过程见上面
+
+# (进阶)四足机器人的sim2sim
 
 # (进阶)extreme-parkour
 此处以extreme-parkour包(PPO算法四足机器人)为训练目标，需要依赖于legged_gym与rsl_rl
