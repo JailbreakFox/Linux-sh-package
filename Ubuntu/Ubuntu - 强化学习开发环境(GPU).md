@@ -127,14 +127,36 @@ $ python legged_gym/scripts/play.py --task=anymal_c_flat --sim_device=cpu --num_
 $ python legged_gym/scripts/train.py --task=anymal_c_flat --sim_device=cuda --rl_device=cuda --pipeline=gpu --num_envs=2048 --headless
 ```
 
-# (进阶)legged_gym添加自己的机器人
-在学会使用legged_gym后，我们可能需要训练自己的机器人，这里描述下具体添加方法，可以借鉴[宇树为例](https://support.unitree.com/home/zh/developer/rl_example)。此处以Go1为例。
+# (进阶)legged_gym添加自己的机器人-go2
+在学会使用legged_gym后，我们可能需要训练自己的机器人，这里描述下具体添加方法，可以借鉴[宇树为例](https://support.unitree.com/home/zh/developer/rl_example)。此处以Go2为例。
 
+```sh
+# 从unitree_rl_gym获取Go1模型与环境配置文件
+git clone https://github.com/unitreerobotics/unitree_rl_gym.git
+
+# 将文件legged_gym/legged_gym/envs/go2拷贝
+# 将文件legged_gym/resources/robots/go2拷贝
+
+# 在配置文件legged_gym/envs/__init__.py中添加go2相关内容
+`
+from .go2.go2_config import GO2RoughCfg, GO2RoughCfgPPO
+task_registry.register( "go2", LeggedRobot, GO2RoughCfg(), GO2RoughCfgPPO() )  
+`
+
+# 编译
+$ python legged_gym/scripts/train.py --task=go2 --sim_device=cuda --rl_device=cuda --pipeline=gpu --num_envs=256 --headless
+```
+
+# (进阶)legged_gym添加自己的机器人-go1
+Go1有更为成熟的开源库
 ```sh
 # 从HIMLoco获取Go1模型与环境配置文件
 $ git clone https://github.com/OpenRobotLab/HIMLoco
-# 将文件legged_gym/legged_gym/envs/go1拷贝
-# 将文件legged_gym/resources/robots/go1拷贝
+
+# 编译
+$ cd HIMLoco/rsl_rl && pip install -e .
+$ cd HIMLoco/legged_gym && pip install -e .
+$ python legged_gym/scripts/train.py --task=go1 --sim_device=cuda --rl_device=cuda --pipeline=gpu --num_envs=256 --headless
 ```
 
 后续训练过程见上面
