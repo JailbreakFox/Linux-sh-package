@@ -20,3 +20,18 @@ $ wget http://fishros.com/install -O fishros && . fishros
 一键安装:Docker(支持amd64和arm64) 贡献@alyssa
 一键安装:cartographer 贡献@小鱼&Catalpa
 一键安装:微信客户端 贡献@小鱼
+
+# (进阶)宇树go2仿真环境搭建
+```sh
+# 安装依赖
+$ sudo apt install liblcm-dev ros-noetic-controller-interface  ros-noetic-gazebo-ros-control ros-noetic-joint-state-controller ros-noetic-effort-controllers ros-noetic-joint-trajectory-controller
+
+$ mkdir -p test_ws/src && cd test_ws/src
+$ git clone https://github.com/unitreerobotics/unitree_legged_sdk.git
+$ git clone https://github.com/unitreerobotics/unitree_ros_to_real.git
+$ git clone https://github.com/unitreerobotics/unitree_ros.git
+$ git clone https://github.com/unitreerobotics/unitree_guide.git
+
+# 运行测试
+$ roslaunch unitree_guide gazeboSim.launch rname:=go2
+```
