@@ -604,6 +604,9 @@ set(CMAKE_C_COMPILER aarch64-linux-android21-clang)
 set(CMAKE_CXX_COMPILER aarch64-linux-android21-clang++)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -static-libstdc++") # 静态依赖c++库
 '
+
+# 编译静态库时需要告知编译链所在目录
+$ cmake -DCMAKE_TOOLCHAIN_FILE=$ANDROID_NDK/build/cmake/android.toolchain.cmake -DANDROID_ABI=arm64-v8a ..
 ```
 
 # Android仿真环境搭建
