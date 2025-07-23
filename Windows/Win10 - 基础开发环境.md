@@ -7,6 +7,7 @@ https://jingyan.baidu.com/article/37bce2bec1a11d5002f3a28b.html
 
 # chrome
 https://www.google.cn/intl/zh-CN/chrome/
+# 插件-Save Page WE。完整保存网页页面
 
 # VMware
 https://www.vmware.com/cn/products/workstation-pro/workstation-pro-evaluation.html
