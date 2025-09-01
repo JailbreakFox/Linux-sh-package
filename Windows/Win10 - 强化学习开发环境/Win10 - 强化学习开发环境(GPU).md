@@ -1,7 +1,7 @@
 # 纯净镜像下载
 https://jingyan.baidu.com/article/37bce2bec1a11d5002f3a28b.html
 
-# VSCode + Anaconda + Pytorch环境搭建
+# Anaconda + Pytorch环境搭建
 ```sh
 # Anaconda指的是一个开源的Python发行版本，其包含了conda、Python等180多个科学包及其依赖项
 # 官网下载比较慢 https://www.anaconda.com/distribution/
@@ -25,7 +25,7 @@ https://jingyan.baidu.com/article/37bce2bec1a11d5002f3a28b.html
 		conda info --env
 	3.新建环境名
 		# conda create --name '环境名' 'python安装包名'
-		conda create --name python2 python=2.7
+		conda create --name python3.8 python=3.8.8
 	4.激活/退出环境
 		conda activate '环境名'
 		conda deactivate '环境名'
@@ -43,14 +43,36 @@ https://jingyan.baidu.com/article/37bce2bec1a11d5002f3a28b.html
 # 去Pytorch网站查找安装pytorch的具体命令 https://pytorch.org/
 # 注意CUDA版本，如果查版本嫌麻烦直接使用CPU版本(速度慢)
 	1.更换源
-	2.新建环境名
-		conda create --name pytorch python=3.6
+	2.新建环境名(关闭科学上网)
+		conda create --name python3.8 python=3.8.8
 	3.激活环境
-		conda activate pytorch
-	4.执行从pytorch官网获得的安装pytorch命令
+		conda activate python3.8
+	4.执行从pytorch官网获得的安装pytorch命令(CUDA版本官方推荐11.8)
+		pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
 	5.安装ipykernel(用于分块运行python代码)
 		conda install ipykernel
-	
+```
+
+# 超级马里奥训练测试
+[测试视频](https://www.bilibili.com/video/BV1CERYY3EjA/?spm_id_from=333.788.player.switch&vd_source=8ea8730dc46c789bd14a5c8141ea1f20&p=5)
+```sh
+# 安装依赖
+conda install setuptools=65.5.0
+conda install wheel=0.38.4
+conda install pip=20.2.4
+# gym-super-mario-bros 将马里奥游戏的接口封装成了gym的接口，该包后续供RL_SuperMario仓库训练使用
+pip install -r requirements.txt
+
+# 测试安装结果
+python test_mario.py
+
+# 训练
+git clone git@github.com:jusway/RL_SuperMario.git
+python test_model.py
+```
+
+# VScode安装
+```sh
 # 安装VSCode(方法在上面)
 	1.安装Python插件
 	2.打开Anaconda Prompt，激活上面新建的环境
