@@ -71,12 +71,11 @@ git clone git@github.com:jusway/RL_SuperMario.git
 python test_model.py
 ```
 
-# VScode安装
+# Pycharm安装
 ```sh
-# 安装VSCode(方法在上面)
-	1.安装Python插件
-	2.打开Anaconda Prompt，激活上面新建的环境
-		conda activate pytorch
-	3.打开VSCode
-		code
+# 从安装包安装Pycharm
+
+# 添加本地解释器->选择现有->类型“conda”->"Anaconda3\envs\python3.8\python.exe"
+
+# 打开RL_SuperMario项目
 ```
